@@ -14,7 +14,8 @@ router.post("/updateUser", controller.updateUser);
 router.post("/signin", controller.userRegister);
 router.post("/login", controller.userLogin);
 router.post("/add/chat", controller.addChat);
-router.get("/chat/personal", controller.userChat);
+router.get("/all/chats", controller.allUsersChat);
 router.get("/data/login", controller.usersData);
+router.post("/personal/chats/:chat_id", controller.personalChat);
 
 module.exports = router;

@@ -74,7 +74,8 @@ const userRegister = (req, res) => {
         [id, email_id, user_name, password],
         (error, results) => {
           if (error) throw error;
-          res.status(201).send("The User Registration is Successfull");
+
+          res.status(201).send(results.rows);
         }
       );
     });
@@ -95,7 +96,7 @@ const userLogin = (req, res) => {
         [user_id, email_id, password],
         (error, results) => {
           if (error) throw error;
-          res.status(200).send("The User Logined SuccessFully");
+          res.status(200).send(results.rows);
         }
       );
     });
@@ -115,7 +116,7 @@ const addChat = (req, res) => {
       }
       pool.query(service.addChat, [chat_id, chat], (error, results) => {
         if (error) throw error;
-        res.status(201).send("created a chat successfully");
+        res.status(201).send(results.rows);
       });
     });
   } catch (err) {
@@ -123,11 +124,24 @@ const addChat = (req, res) => {
   }
 };
 
-const userChat = async (req, res) => {
+const allUsersChat = async (req, res) => {
   try {
     await pool.query(service.getChats, (error, results) => {
       if (error) throw error;
       res.status(200).json(results.rows);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const personalChat = async (req, res) => {
+  const id = parseInt(req.params.chat_id);
+  const { chat_id } = req.body;
+  try {
+    await pool.query(service.personalChat, [chat_id, id], (error, results) => {
+      if (error) throw error;
+      res.status(200).send(results.rows);
     });
   } catch (err) {
     console.log(err);
@@ -154,5 +168,6 @@ module.exports = {
   updateUser,
   userRegister,
   usersData,
-  userChat,
+  allUsersChat,
+  personalChat,
 };

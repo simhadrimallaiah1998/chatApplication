@@ -5,11 +5,11 @@ import { toast } from "react-toastify";
 import useStore from "../store";
 
 const Login = () => {
-  const reg = useStore((state) => state.registration);
+  const registration = useStore((state) => state.registration);
   const navigate = useNavigate();
   const [id, setId] = useState();
   const [email, setEmail] = useState("");
-  console.log("login page registration", reg);
+  console.log("login page registration", registration);
 
   const [pass, setPass] = useState("");
 
@@ -32,15 +32,18 @@ const Login = () => {
       password: pass,
     });
     if (err) throw err;
-    console.log(res);
-    toast.success("You have been Login Successfully");
-    navigate("/chat");
+    if (res) {
+      toast.success("You have been Login Successfully");
+      navigate("/message");
+    } else {
+      navigate("/");
+    }
   };
 
   return (
     <div>
       <div className="bg-blue-950 w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-center">
-        <div className="w-2/3 rounded-md  shadow-lg h-full py-10 bg-white grid grid-cols-1 place-content-center place-items-center">
+        <div className="w-2/3 rounded-md  shadow-lg h-full py-10 bg-gray-400 grid grid-cols-1 place-content-center place-items-center">
           <form onSubmit={handleLogin} className="w-full px-2">
             <div className="flex flex-col justify-start items-start w-full">
               <label className="font-bold text-black text-sm ">

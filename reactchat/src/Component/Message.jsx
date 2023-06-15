@@ -3,7 +3,8 @@ import * as api from "../config/api";
 import { toast } from "react-toastify";
 
 const Message = () => {
-  const [messages, setMessages] = useState([]);
+  const [messData, setMessData] = useState([]);
+  const [send, setSend] = useState(true);
   const [id, setId] = useState();
   const [mess, setMess] = useState("");
 
@@ -16,32 +17,37 @@ const Message = () => {
 
   const handleChat = async (event) => {
     event.preventDefault();
+
+    setSend(!send);
     const [res, err] = await api.AddChat({ chat_id: id, chat: mess });
     if (err) throw err;
     console.log(res);
     toast.success("you added your Text");
   };
 
+  async function getPreviousChat() {
+    const [res, err] = await api.GetChats();
+    if (err) throw err;
+    console.log(res);
+    setMessData(res.data);
+  }
+
   useEffect(() => {
-    async function getPreviousChat() {
-      const [res, err] = await api.GetChats();
-      if (err) throw err;
-      console.log(res);
-      setMessages(res.data);
-    }
     getPreviousChat();
-  }, [messages]);
-  console.log("the messages till now is", messages);
+  }, [send]);
+
+  console.log("the messages till now is", messData);
   return (
     <div>
       <div className="bg-blue-950 w-full relative h-screen grid grid-cols-1 px-4 py-2">
-        <div className="w-full overflow-auto">
+        <div className="w-full overflow-hidden">
           <h1 className="text-white font-bold fontserif ">
             Welcome to chat Personal Chat Session
           </h1>
-          <div className="w-full">
-            {messages.map((e) => (
-              <div className="flex m-1 flex-row justify-start items-center py-1 bg-green-950">
+
+          <div className="w-full mb-14 h-5/6 overflow-scroll">
+            {messData.map((e) => (
+              <div className="flex m-1 flex-row justify-between items-center py-1 bg-green-950">
                 <h1 className="font-bold text-white px-5">{e.chat_id}</h1>
                 <h1 className="font-bold text-white font-serif px-5">
                   {e.chat}

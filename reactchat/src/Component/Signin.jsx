@@ -36,9 +36,9 @@ const Signin = () => {
       password: pass,
     });
     if (err) throw err;
-    toast.success("your Registration is successfull");
-    console.log(res);
-    setRegistration(res);
+    toast.success("Your Registration is successfull");
+    console.log("The User Data is", res.data);
+    setRegistration(res.data);
     navigate("/login");
   };
 
@@ -51,7 +51,7 @@ const Signin = () => {
               Enter Your Super ID
             </label>
             <input
-              type="text"
+              type="number"
               onChange={handleId}
               className=" py-2 font-bold border-blue-950 border-2 w-full "
               placeholder="Enter Your Super ID"
@@ -63,7 +63,7 @@ const Signin = () => {
               Enter Your Email_ID
             </label>
             <input
-              type="text"
+              type="email"
               onChange={handleEmail}
               className=" py-2 font-bold border-blue-950 border-2 w-full "
               placeholder="Enter Your Email_ID"
