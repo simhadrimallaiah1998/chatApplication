@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as api from "../config/api";
 import { toast } from "react-toastify";
-import useStore from "../store";
 
 import { useNavigate } from "react-router-dom";
 
@@ -25,76 +24,68 @@ const Signin = () => {
   const handlePass = (event) => {
     setPass(event.target.value);
   };
-  const setRegistration = useStore((state) => state.setRegistration);
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    const [res, err] = await api.UserSignin({
-      id: id,
-      email_id: email,
-      user_name: user,
-      password: pass,
-    });
-    if (err) throw err;
-    toast.success("Your Registration is successfull");
-    console.log("The User Data is", res.data);
-    setRegistration(res.data);
-    navigate("/login");
+    if (id.length < 7) {
+      const [res, err] = await api.UserSignin({
+        id: id,
+        email_id: email,
+        user_name: user,
+        password: pass,
+        created_at: new Date(),
+      });
+      if (err) throw err;
+      toast.success("Your Registration is Successfull");
+      console.log("The User Data is", res.data);
+
+      navigate("/login");
+    } else {
+      alert("The SuperID shouldn't more than 6 digits");
+    }
   };
 
   return (
-    <div className="bg-blue-950 w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-center">
-      <div className="w-2/3 rounded-md  shadow-lg h-full py-10 bg-white grid grid-cols-1 place-content-center place-items-center">
+    <div className="bg-[url('https://t3.ftcdn.net/jpg/02/92/90/56/360_F_292905667_yFUJNJPngYeRNlrRL4hApHWxuYyRY4kN.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-end">
+      <div className="w-1/2 rounded-md  h-full py-10   bg-transparent border-2 border-white grid grid-cols-1  place-content-center place-items-center">
         <form className="w-full px-2" onSubmit={handleRegister}>
           <div className="flex flex-col justify-start items-start w-full">
-            <label className="font-bold text-black text-sm ">
-              Enter Your Super ID
-            </label>
             <input
               type="number"
               onChange={handleId}
-              className=" py-2 font-bold border-blue-950 border-2 w-full "
+              className=" py-2  bg-transparent font-bold   border-gray-500 border-b-2 w-full m-1 px-3 text-black"
               placeholder="Enter Your Super ID"
             />
           </div>
-          <hr className=" border-2 border-blue-950 m-1" />
+
           <div className="flex flex-col justify-start items-start w-full">
-            <label className="font-bold text-black text-sm ">
-              Enter Your Email_ID
-            </label>
             <input
               type="email"
               onChange={handleEmail}
-              className=" py-2 font-bold border-blue-950 border-2 w-full "
+              className=" py-2  bg-transparent font-bold m-1 border-gray-500 border-b-2 w-full px-3 text-black"
               placeholder="Enter Your Email_ID"
             />
           </div>
-          <hr className=" border-2 border-blue-950 m-1" />
+
           <div className="flex flex-col justify-start items-start w-full px-1">
-            <label className="font-bold text-black text-sm ">
-              Enter Your User_ID
-            </label>
             <input
               onChange={handleUser}
               type="text"
-              className=" py-2 font-bold border-blue-950 border-2 w-full px-1"
+              className=" py-2  bg-transparent font-bold  border-gray-500 m-1 border-b-2 w-full px-3 text-black"
               placeholder="Enter Your User_ID"
             />
           </div>
-          <hr className=" border-2 border-blue-950 m-1" />
+
           <div className="flex flex-col justify-start items-start w-full px-1">
-            <label className="font-bold text-black text-sm ">
-              Enter Your Password
-            </label>
             <input
               onChange={handlePass}
               type="text"
-              className=" py-2 font-bold border-blue-950 border-2 w-full px-1"
+              className=" py-2  bg-transparent font-bold m-1 border-gray-500 border-b-2 w-full px-3 text-black"
               placeholder="Enter Your Password"
             />
           </div>
-          <hr className=" border-2 border-blue-950 m-1" />
-          <div className="grid grid-cols-1 bg-red-950 h-full px-4">
+
+          <div className="grid grid-cols-1 mt-1 rounded-lg  bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:text-black h-full px-4">
             <button
               type="submit"
               className=" text-white font-bold py-2 rounded-md"
@@ -103,10 +94,10 @@ const Signin = () => {
             </button>
           </div>
           <h1 className="text-black font-bold">
-            Opps...? Already had an Account
+            Already had an Account..?then Please do Login
           </h1>
           <Link to="/login">
-            <div className="grid grid-cols-1 bg-blue-950 h-full px-4">
+            <div className="grid grid-cols-1 rounded-lg bg-gradient-to-r  from-fuchsia-500 to-violet-500 h-full px-4">
               <button className=" text-white font-bold py-2 rounded-md">
                 Login
               </button>

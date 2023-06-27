@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import * as api from "../config/api";
 import { toast } from "react-toastify";
+import useStore from "../store";
 
-const Message = () => {
+const Message = (props) => {
+  const registration = useStore((state) => state.registration);
+  console.log("login_data_of_the_user", registration);
+  const Super_id = registration[0][0].user_id;
+  console.log(Super_id);
+
   const [messData, setMessData] = useState([]);
   const [send, setSend] = useState(true);
-  const [id, setId] = useState();
+
   const [mess, setMess] = useState("");
 
-  const handleChat_id = (event) => {
-    setId(event.target.value);
-  };
   const handleMessage = (event) => {
     setMess(event.target.value);
   };
@@ -18,8 +21,11 @@ const Message = () => {
   const handleChat = async (event) => {
     event.preventDefault();
 
+    const [res, err] = await api.AddChat({
+      chat_id: Super_id,
+      chat: mess,
+    });
     setSend(!send);
-    const [res, err] = await api.AddChat({ chat_id: id, chat: mess });
     if (err) throw err;
     console.log(res);
     toast.success("you added your Text");
@@ -42,7 +48,7 @@ const Message = () => {
       <div className="bg-blue-950 w-full relative h-screen grid grid-cols-1 px-4 py-2">
         <div className="w-full overflow-hidden">
           <h1 className="text-white font-bold fontserif ">
-            Welcome to chat Personal Chat Session
+            GANDRA SIMHADRI PERSONAL CHATTING APPILICATION Gandra
           </h1>
 
           <div className="w-full mb-14 h-5/6 overflow-scroll">
@@ -60,12 +66,6 @@ const Message = () => {
             className="w-full px-2 absolute bottom-0 "
           >
             <div className="flex flex-row justify-between items-center w-full px-1 ">
-              <input
-                type="text"
-                onChange={handleChat_id}
-                className=" py-2 font-bold text-sm border-blue-950 border-2 px-1 w-1/6"
-                placeholder="Chat_ID"
-              />
               <input
                 type="text"
                 onChange={handleMessage}

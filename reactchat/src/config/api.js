@@ -30,3 +30,31 @@ export async function GetChats() {
 
   return [data, null];
 }
+
+export async function GetAllUsers() {
+  const data = await axios.get(API_Routes.getAllUser);
+  return [data, null];
+}
+
+export async function personal({ chat_id }) {
+  const data = await axios.post(API_Routes.personalChat, { chat_id });
+
+  return [data, null];
+}
+
+export async function personToPerson({ sender_id, receiver_id, chat }) {
+  const data = await axios.post(API_Routes.personToPerson, {
+    sender_id,
+    receiver_id,
+    chat,
+  });
+  return [data, null];
+}
+
+export async function getPersonalChat({ sender_id, receiver_id }) {
+  const data = await axios.post(API_Routes.getPersonalChat, {
+    sender_id,
+    receiver_id,
+  });
+  return [data, null];
+}

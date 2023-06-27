@@ -64,14 +64,14 @@ const updateUser = (req, res) => {
 
 const userRegister = (req, res) => {
   try {
-    const { id, email_id, user_name, password } = req.body;
+    const { id, email_id, user_name, password, created_at } = req.body;
     pool.query(service.checkuserIdExists, [id], (error, results) => {
       if (results.rows.length) {
         res.status(400).send("The User's is Already Existed");
       }
       pool.query(
         service.userRegister,
-        [id, email_id, user_name, password],
+        [id, email_id, user_name, password, created_at],
         (error, results) => {
           if (error) throw error;
 
@@ -135,19 +135,6 @@ const allUsersChat = async (req, res) => {
   }
 };
 
-const personalChat = async (req, res) => {
-  const id = parseInt(req.params.chat_id);
-  const { chat_id } = req.body;
-  try {
-    await pool.query(service.personalChat, [chat_id, id], (error, results) => {
-      if (error) throw error;
-      res.status(200).send(results.rows);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 const usersData = (req, res) => {
   try {
     pool.query(service.usersData, (error, results) => {
@@ -158,8 +145,42 @@ const usersData = (req, res) => {
   }
 };
 
+const personToPersonChat = (req, res) => {
+  try {
+    const { sender_id, receiver_id, chat } = req.body;
+    pool.query(
+      service.personToPersonChat,
+      [sender_id, receiver_id, chat],
+      (error, results) => {
+        if (error) throw error;
+        res.status(200).json(results.rows);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getPersonToPersonChat = (req, res) => {
+  try {
+    const { sender_id, receiver_id } = req.body;
+
+    pool.query(
+      service.getPersonToPersonChat,
+      [sender_id, receiver_id],
+      (error, results) => {
+        if (error) throw error;
+        res.status(200).json(results.rows);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   addChat,
+  getPersonToPersonChat,
   userLogin,
   getAllUsers,
   getUserByID,
@@ -169,5 +190,5 @@ module.exports = {
   userRegister,
   usersData,
   allUsersChat,
-  personalChat,
+  personToPersonChat,
 };

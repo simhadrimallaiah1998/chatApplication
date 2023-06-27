@@ -5,5 +5,7 @@ export const API_Routes = {
   loginuser: `${Base_URL}/user/login`,
   userChat: `${Base_URL}/user/add/chat`,
   getChat: `${Base_URL}/user/all/chats`,
-  personalChat: `${Base_URL}/user/personal/chats/:chat_id`,
+  getAllUser: `${Base_URL}/user/data/signin`,
+  personToPerson: `${Base_URL}/user/person/to/person/chat`,
+  getPersonalChat: `${Base_URL}/user/get/chats/between`,
 };
