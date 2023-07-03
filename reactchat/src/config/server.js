@@ -1,1 +1,1 @@
-export const Base_URL = "https://app-i32b.onrender.com/api/v1";
+export const Base_URL = "https://chat-o0gd.onrender.com/api/v1";
