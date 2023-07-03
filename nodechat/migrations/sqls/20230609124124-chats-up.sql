@@ -14,7 +14,3 @@ CREATE TABLE IF NOT EXISTS public.chats
         NOT VALID
 )
 
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.chats
-    OWNER to postgres;

@@ -11,7 +11,3 @@ CREATE TABLE IF NOT EXISTS public.chatting
     chat text COLLATE pg_catalog."default"
 )
 
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.chatting
-    OWNER to postgres;

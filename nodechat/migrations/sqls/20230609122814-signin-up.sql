@@ -13,7 +13,3 @@ CREATE TABLE IF NOT EXISTS public.signin
     
 )
 
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.signin
-    OWNER to postgres;

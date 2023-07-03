@@ -14,7 +14,3 @@ CREATE TABLE IF NOT EXISTS public.login
         ON DELETE NO ACTION
 )
 
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.login
-    OWNER to postgres;
