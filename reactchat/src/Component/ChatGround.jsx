@@ -139,8 +139,8 @@ const ChatGround = () => {
             </form>
           </div>
         </div>
-        <div className="h-[100%] lg:hidden bg-red-950 col-span-6">
-          <div className="h-[10%] bg-[url('https://c1.wallpaperflare.com/preview/367/582/368/glass-scifi-violet-ultraviolet.jpg')]  bg-cover">
+        <div className="h-[100%] lg:hidden bg-blue-950 col-span-6">
+          <div className="h-[10%] bg-[url('https://img.freepik.com/free-vector/dark-black-background-design-with-stripes_1017-38064.jpg')]  bg-cover">
             <h1 className="text-white font-extrabold">
               THE SUPER_ID'S OF THE USERS
             </h1>
@@ -155,7 +155,7 @@ const ChatGround = () => {
             </div>
           </div>
           <hr className="borderr-2 border-black border-dotted" />
-          <div className="h-[90%] bg-[url('https://wallpaperaccess.com/full/1554118.jpg')]   bg-cover">
+          <div className="h-[90%] bg-[url('https://www.ixpap.com/images/2021/11/Matt-Black-Wallpaper-2.jpg')]   bg-cover">
             <div className="h-[8%] w-full py-2  bg-transparent px-4 text-sm   text-center font-bold text-white">
               Hey {loginId} You are right now chatting with {receiver}
             </div>

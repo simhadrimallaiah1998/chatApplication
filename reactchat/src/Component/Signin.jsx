@@ -60,7 +60,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL1iRbQro0ybX3H8jSstqKPYS63yA4Fmx8IQ&usqp=CAU')]    lg:bg-[url('https://t3.ftcdn.net/jpg/02/92/90/56/360_F_292905667_yFUJNJPngYeRNlrRL4hApHWxuYyRY4kN.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-end">
+    <div className="bg-[url('https://w0.peakpx.com/wallpaper/20/744/HD-wallpaper-black-pattern-black-design-modern-thumbnail.jpg')]    lg:bg-[url('https://t3.ftcdn.net/jpg/02/92/90/56/360_F_292905667_yFUJNJPngYeRNlrRL4hApHWxuYyRY4kN.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-end">
       <div className="lg:w-1/2 w-full rounded-md  h-full py-10   bg-transparent lg:border-2 lg:border-white grid grid-cols-1  place-content-center place-items-center">
         <form className="w-full px-2" onSubmit={handleRegister}>
           <div className="flex flex-col justify-start items-start w-full">
