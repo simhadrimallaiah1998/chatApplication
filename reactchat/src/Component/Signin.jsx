@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as api from "../config/api";
 import { toast } from "react-toastify";
@@ -11,10 +11,23 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
+  const [exist, setExist] = useState([]);
+
+  useEffect(() => {
+    async function GetUserId() {
+      const [res, err] = await api.GetAllUsers();
+      if (err) throw err;
+      setExist(res.data);
+    }
+    GetUserId();
+  }, []);
+
+  console.log("The Already Existed Id", exist);
 
   const handleId = (event) => {
     setId(event.target.value);
   };
+
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -27,6 +40,7 @@ const Signin = () => {
 
   const handleRegister = async (event) => {
     event.preventDefault();
+
     if (id.length < 7) {
       const [res, err] = await api.UserSignin({
         id: id,
