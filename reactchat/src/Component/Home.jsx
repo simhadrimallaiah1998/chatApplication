@@ -40,7 +40,7 @@ const Home = () => {
           <br />
           Please Don't share your personal things untill you exactly know them
         </h1>
-        <div className="absolute bottom-6 text-gray-300 font-bold hover:text-gray-200">
+        <div className="absolute bottom-6 text-gray-300 text-sm font-bold hover:text-gray-200">
           @copyright 2023 This Website is Developed by SIMHADRI GANDRA <br />
           Hold On Good Things May Take Time...! The new features are under
           progress
