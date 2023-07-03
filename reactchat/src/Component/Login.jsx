@@ -43,8 +43,8 @@ const Login = () => {
 
   return (
     <div>
-      <div className="bg-[url('https://img.freepik.com/premium-vector/gradient-connection-background_23-2150519259.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-center">
-        <div className="w-2/3 rounded-md  shadow-lg h-full py-10  bg-transparent border-2 border-white grid grid-cols-1 place-content-center place-items-center">
+      <div className="bg-[url('https://cutewallpaper.org/21/dark-waves-wallpapers/Wallpaper-wave,-line,-shadow,-black,-background-3840x2400-.jpg')]  lg:bg-[url('https://img.freepik.com/premium-vector/gradient-connection-background_23-2150519259.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-center">
+        <div className="lg:w-2/3 w-full  rounded-md  shadow-lg h-full py-10  bg-transparent lg:border-2 lg:border-white grid grid-cols-1 place-content-center place-items-center">
           <form onSubmit={handleLogin} className="w-full px-2">
             <div className="flex flex-col justify-start items-start w-full">
               <input
@@ -54,7 +54,7 @@ const Login = () => {
                 placeholder="Enter Registered Super ID"
               />
             </div>
-            <hr className=" border-2 border-blue-950 m-1" />
+            <hr className=" lg:border-2 border-none  lg:border-blue-950 m-1" />
             <div className="flex flex-col justify-start items-start w-full">
               <input
                 type="text"
@@ -63,7 +63,7 @@ const Login = () => {
                 placeholder="Enter Registered Email_ID"
               />
             </div>
-            <hr className=" border-2 border-blue-950 m-1" />
+            <hr className=" lg:border-2 border-none lg:border-blue-950 m-1" />
 
             <div className="flex flex-col justify-start items-start w-full px-1">
               <input
@@ -73,7 +73,7 @@ const Login = () => {
                 placeholder="Enter Registered Password"
               />
             </div>
-            <hr className=" border-2 border-blue-950 m-1" />
+            <hr className=" lg:border-2 border-none lg:border-blue-950 m-1" />
 
             <div className="grid grid-cols-1   bg-gradient-to-br from-blue-950 via-white to-blue-950 h-full px-4">
               <button

@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="h-screen w-full ">
-      <header className="bg-[url('https://c4.wallpaperflare.com/wallpaper/24/23/796/portrait-display-vertical-pattern-digital-art-wallpaper-preview.jpg')] md:bg-[url('https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg')] bg-cover h-screen w-full flex flex-col justify-center items-center ">
-        <h1 className=" font-serif font-bold text-white text-2xl">
+    <div className="h-screen w-full">
+      <header className=" relative bg-[url('https://c4.wallpaperflare.com/wallpaper/24/23/796/portrait-display-vertical-pattern-digital-art-wallpaper-preview.jpg')] p-4 md:bg-[url('https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg')] bg-cover h-screen w-full flex flex-col justify-center items-center ">
+        <h1 className=" font-serif font-bold text-black lg:text-white text-2xl">
           Welcome To The Chat Application
         </h1>
 
@@ -34,15 +34,15 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <h1 className=" font-serif font-bold text-white text-sm lg:text-2xl">
+        <h1 className=" font-serif  lg:hidden font-bold text-white text-sm lg:text-2xl">
           The Application is better in Landscape <br />
           (So Turn Your mobile horizoantally for better experience)
           <br />
           Please Don't share your personal things untill you exactly know them
         </h1>
-        <h1 className="text-black font-bold hover:text-gray-200">
+        <div className="absolute bottom-4 text-gray-300 font-bold hover:text-gray-200">
           @copyright 2023 This Website is Build by SIMHADRI GANDRA
-        </h1>
+        </div>
       </header>
     </div>
   );

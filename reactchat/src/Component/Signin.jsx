@@ -60,14 +60,14 @@ const Signin = () => {
   };
 
   return (
-    <div className="bg-[url('https://t3.ftcdn.net/jpg/02/92/90/56/360_F_292905667_yFUJNJPngYeRNlrRL4hApHWxuYyRY4kN.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-end">
-      <div className="w-1/2 rounded-md  h-full py-10   bg-transparent border-2 border-white grid grid-cols-1  place-content-center place-items-center">
+    <div className="bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL1iRbQro0ybX3H8jSstqKPYS63yA4Fmx8IQ&usqp=CAU')]    lg:bg-[url('https://t3.ftcdn.net/jpg/02/92/90/56/360_F_292905667_yFUJNJPngYeRNlrRL4hApHWxuYyRY4kN.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-end">
+      <div className="lg:w-1/2 w-full rounded-md  h-full py-10   bg-transparent lg:border-2 lg:border-white grid grid-cols-1  place-content-center place-items-center">
         <form className="w-full px-2" onSubmit={handleRegister}>
           <div className="flex flex-col justify-start items-start w-full">
             <input
               type="number"
               onChange={handleId}
-              className=" py-2  bg-transparent font-bold   border-gray-500 border-b-2 w-full m-1 px-3 text-black"
+              className=" py-2  bg-transparent font-bold   border-gray-500 border-b-2 w-full m-1 px-3 text-white lg:text-black"
               placeholder="Enter Your Super ID"
             />
           </div>
@@ -76,7 +76,7 @@ const Signin = () => {
             <input
               type="email"
               onChange={handleEmail}
-              className=" py-2  bg-transparent font-bold m-1 border-gray-500 border-b-2 w-full px-3 text-black"
+              className=" py-2  bg-transparent font-bold m-1 border-gray-500 border-b-2 w-full px-3 text-white lg:text-black"
               placeholder="Enter Your Email_ID"
             />
           </div>
@@ -85,7 +85,7 @@ const Signin = () => {
             <input
               onChange={handleUser}
               type="text"
-              className=" py-2  bg-transparent font-bold  border-gray-500 m-1 border-b-2 w-full px-3 text-black"
+              className=" py-2  bg-transparent font-bold  border-gray-500 m-1 border-b-2 w-full px-3 text-white lg:text-black"
               placeholder="Enter Your User_ID"
             />
           </div>
@@ -94,7 +94,7 @@ const Signin = () => {
             <input
               onChange={handlePass}
               type="text"
-              className=" py-2  bg-transparent font-bold m-1 border-gray-500 border-b-2 w-full px-3 text-black"
+              className=" py-2  bg-transparent font-bold m-1 border-gray-500 border-b-2 w-full px-3 text-white lg:text-black"
               placeholder="Enter Your Password"
             />
           </div>
@@ -107,7 +107,7 @@ const Signin = () => {
               Register
             </button>
           </div>
-          <h1 className="text-black font-bold">
+          <h1 className="lg:text-black text-white font-bold">
             Already had an Account..?then Please do Login
           </h1>
           <Link to="/login">
