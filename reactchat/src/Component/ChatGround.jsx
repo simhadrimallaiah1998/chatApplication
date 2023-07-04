@@ -83,7 +83,7 @@ const ChatGround = () => {
   function getfuntion(e) {
     if (e.sender_id === loginId) {
       return (
-        <div className="text-right text-white   bg-transparent hover:border-white hover:border px-2 py-2 rounded-lg  m-2 ">
+        <div className="text-right text-white   bg-transparent hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
           {e.chat}
         </div>
       );
@@ -155,11 +155,11 @@ const ChatGround = () => {
             </div>
           </div>
           <hr className="borderr-2 border-black border-dotted" />
-          <div className="h-[90%] bg-[url('https://www.ixpap.com/images/2021/11/Matt-Black-Wallpaper-2.jpg')]   bg-cover">
+          <div className="h-[90%] relative overflow-scroll bg-[url('https://www.ixpap.com/images/2021/11/Matt-Black-Wallpaper-2.jpg')]   bg-cover">
             <div className="h-[8%] w-full py-2  bg-transparent px-4 text-sm   text-center font-bold text-white">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
-            <div>
+            <div className="mb-24 p-4">
               {chat.length > 0 ? (
                 chat.map((e) => getfuntion(e))
               ) : (
@@ -168,7 +168,7 @@ const ChatGround = () => {
                 </h1>
               )}
             </div>
-            <div className="absolute bottom-0 w-[100%] border-2 border-black">
+            <div className="absolute -bottom-10 w-[100%] border-2 border-black">
               <form onSubmit={handleSubmitChat}>
                 <input
                   type="text"
