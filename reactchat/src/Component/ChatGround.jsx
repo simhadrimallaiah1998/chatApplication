@@ -64,6 +64,7 @@ const ChatGround = () => {
       receiver_id: receiver,
       chat: mess,
     });
+    setMess((document.getElementById("chatBox").value = ""));
     if (err) throw err;
     console.log(res.data);
 
@@ -101,7 +102,7 @@ const ChatGround = () => {
         <div className="lg:col-span-1 lg:block lg:py-2 hidden overflow-scroll place-content-center">
           <h1 className="text-white font-extrabold">THE SUPER_ID'S</h1>
           {SignId.map((e) => (
-            <div className=" w-[95%] font-extrabold hover:bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtdv5X5MEqVnjNLyFaXQOHnN8VE0V539Ydw&usqp=CAU')] hover:bg-cover hover:w-full hover:text-white hover:px-10 border-2 border-white py-2 text-white m-1 text-start px-5">
+            <div className=" w-[95%] font-extrabold hover:bg-gradient-to-tr from-blue-950 via-white to-blue-950  hover:text-black hover:px-10 border-2 border-white py-2 text-white m-1 text-start px-5">
               <button type="button" onClick={() => handleUserId(e)} key={e}>
                 {e}
               </button>
@@ -110,7 +111,7 @@ const ChatGround = () => {
         </div>
 
         <div className="lg:col-span-5 lg:block hidden  bg-green-950 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold">
-          <div className="h-[8%] w-full py-2  bg-transparent  border-2 border-double border-white  text-center font-bold text-white">
+          <div className="h-[8%] w-full py-2  bg-gradient-to-t from-blue-950 via-white to-blue-950   border-2 border-double border-white  text-center font-extrabold text-black">
             Hey {loginId} You are right now chatting with {receiver}
           </div>
           <div>
@@ -126,6 +127,7 @@ const ChatGround = () => {
             <form onSubmit={handleSubmitChat}>
               <input
                 type="text"
+                id="chatBox"
                 className="lg:w-[94%] w-[80%] py-2 bg-gray-100 px-4"
                 placeholder="please enter your text"
                 onChange={handleChat}
@@ -139,6 +141,7 @@ const ChatGround = () => {
             </form>
           </div>
         </div>
+
         <div className="h-[100%] lg:hidden bg-blue-950 col-span-6">
           <div className="h-[10%] bg-[url('https://img.freepik.com/free-vector/dark-black-background-design-with-stripes_1017-38064.jpg')]  bg-cover">
             <h1 className="text-white font-extrabold">
@@ -172,6 +175,7 @@ const ChatGround = () => {
               <form onSubmit={handleSubmitChat}>
                 <input
                   type="text"
+                  id="chatBox"
                   className="lg:w-[94%] w-[80%] py-2 bg-gray-100 px-4"
                   placeholder="please enter your text"
                   onChange={handleChat}
