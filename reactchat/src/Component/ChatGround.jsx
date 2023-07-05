@@ -110,11 +110,11 @@ const ChatGround = () => {
           ))}
         </div>
 
-        <div className="lg:col-span-5 lg:block hidden  bg-green-950 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold">
-          <div className="h-[8%] w-full py-2  bg-gradient-to-t from-blue-950 via-white to-blue-950   border-2 border-double border-white  text-center font-extrabold text-black">
+        <div className="lg:col-span-5 h-[100%] lg:block hidden  bg-green-950 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold">
+          <div className="h-[10%] w-full py-2  bg-gradient-to-t from-blue-950 via-white to-blue-950   border-2 border-double border-white  text-center font-extrabold text-black">
             Hey {loginId} You are right now chatting with {receiver}
           </div>
-          <div>
+          <div className="h-[85%] overflow-scroll">
             {chat.length > 0 ? (
               chat.map((e) => getfuntion(e))
             ) : (
