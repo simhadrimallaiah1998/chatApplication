@@ -18,9 +18,9 @@ function App() {
           <Route exact path="/signin" element={<Signin />}></Route>
           <Route path="/message" element={<Message />}></Route>
           <Route path="/chat/ground" element={<ChatGround />}></Route>
-          <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/home" element={<Home />}></Route>
           <Route exact path="/test/:id" element={<Test />}></Route>
-          <Route exact path="/login" element={<Login />}></Route>
+          <Route exact path="/" element={<Login />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <ToastContainer />

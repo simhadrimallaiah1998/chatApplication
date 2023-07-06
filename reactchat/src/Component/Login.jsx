@@ -43,9 +43,9 @@ const Login = () => {
 
   return (
     <div>
-      <div className="bg-[url('https://cutewallpaper.org/21/dark-waves-wallpapers/Wallpaper-wave,-line,-shadow,-black,-background-3840x2400-.jpg')]  lg:bg-[url('https://img.freepik.com/premium-vector/gradient-connection-background_23-2150519259.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-center">
-        <div className="lg:w-2/3 w-full  rounded-md  shadow-lg h-full py-10  bg-transparent lg:border-2 lg:border-white grid grid-cols-1 place-content-center place-items-center">
-          <form onSubmit={handleLogin} className="w-full px-2">
+      <div className="bg-[url('https://wallpaperaccess.com/full/7781042.jpg')]  lg:bg-[url('https://img.freepik.com/premium-vector/gradient-connection-background_23-2150519259.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-center">
+        <div className="lg:w-2/3 w-full px-10 rounded-md  shadow-lg h-full py-10  bg-transparent lg:border-2 lg:border-white grid grid-cols-1 place-content-center place-items-center">
+          <form onSubmit={handleLogin} className="w-full  px-2">
             <div className="flex flex-col justify-start items-start w-full">
               <input
                 onChange={handleId}
@@ -75,15 +75,25 @@ const Login = () => {
             </div>
             <hr className=" lg:border-2 border-none lg:border-blue-950 m-1" />
 
-            <div className="grid grid-cols-1   bg-gradient-to-br from-blue-950 via-white to-blue-950 h-full px-4">
+            <div className="grid grid-cols-1   bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full px-4">
               <button
                 type="submit"
-                className=" text-black font-bold py-2  text-lg rounded-md"
+                className=" hover:text-black text-white text-2xl font-extrabold font-serif py-2   rounded-md"
               >
                 Login
               </button>
             </div>
           </form>
+          <div className="mt-24 w-full">
+            <h1 className="text-white font-extrabold ">Not Registered Yet?</h1>
+            <a href="/signin">
+              <div className="grid grid-cols-1   bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% h-full px-4">
+                <button className=" hover:text-black text-white text-2xl font-extrabold font-serif py-2   rounded-md">
+                  Signin
+                </button>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
