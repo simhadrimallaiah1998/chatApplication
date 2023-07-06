@@ -77,10 +77,10 @@ const Login = () => {
             </div>
             <hr className=" lg:border-2 border-none lg:border-blue-950 m-1" />
 
-            <div className="grid grid-cols-1   bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full px-4">
+            <div className="grid grid-cols-1 rounded-full   bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full px-4">
               <button
                 type="submit"
-                className=" hover:text-black text-white text-2xl font-extrabold font-serif py-2   rounded-md"
+                className=" hover:text-black text-white text-2xl font-extrabold font-serif py-2  "
               >
                 Login
               </button>
@@ -89,7 +89,7 @@ const Login = () => {
           <div className="mt-24 w-full">
             <h1 className="text-white font-extrabold ">Not Registered Yet?</h1>
             <a href="/signin">
-              <div className="grid grid-cols-1   bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% h-full px-4">
+              <div className="grid grid-cols-1 rounded-full  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% h-full px-4">
                 <button className=" hover:text-black text-white text-2xl font-extrabold font-serif py-2   rounded-md">
                   Signin
                 </button>

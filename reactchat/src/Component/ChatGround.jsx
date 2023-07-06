@@ -158,7 +158,7 @@ const ChatGround = () => {
             </div>
           </div>
 
-          <div className="h-[82%] relative overflow-scroll bg-[url('https://i.pinimg.com/originals/4d/fc/98/4dfc98fe97aec74439cc1701fbf599dc.jpg')]   bg-cover">
+          <div className="h-[80%] relative overflow-scroll bg-[url('https://i.pinimg.com/originals/4d/fc/98/4dfc98fe97aec74439cc1701fbf599dc.jpg')]   bg-cover">
             <div className="h-[10%] w-full py-2  bg-gradient-to-t from-transparent via-blue-800 to-transparent px-4 text-sm   text-center font-extrabold text-white">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
@@ -175,7 +175,7 @@ const ChatGround = () => {
               )}
             </div>
           </div>
-          <div className=" w-[100%] h-[8%] border-2 border-black">
+          <div className=" w-[100%] h-[5%] border-2 border-black">
             <form onSubmit={handleSubmitChat}>
               <input
                 type="text"
