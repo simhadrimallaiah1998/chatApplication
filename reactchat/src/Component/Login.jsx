@@ -33,7 +33,9 @@ const Login = () => {
     });
     if (err) throw err;
     if (res) {
-      toast.success("You have been Logged in Successfully");
+      toast.success(
+        "You have been Logged in to Simhadri Personal Application Successfully"
+      );
       setRegistration(res.data);
       navigate("/chat/ground");
     } else {

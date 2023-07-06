@@ -58,6 +58,7 @@ const ChatGround = () => {
 
   const handleSubmitChat = async (event) => {
     event.preventDefault();
+    document.getElementById("chatBox").value = "";
 
     const [res, err] = await api.personToPerson({
       sender_id: loginId,
@@ -127,8 +128,7 @@ const ChatGround = () => {
             <form onSubmit={handleSubmitChat}>
               <input
                 type="text"
-                id="chatBox"
-                className="lg:w-[94%] w-[80%] py-2 bg-gray-100 px-4"
+                className="lg:w-[94%] w-[80%] py-2 font-extrabold text-black bg-gray-100 px-4"
                 placeholder="please enter your text"
                 onChange={handleChat}
               />
@@ -142,14 +142,14 @@ const ChatGround = () => {
           </div>
         </div>
 
-        <div className="h-[100%] lg:hidden bg-blue-950 col-span-6">
-          <div className="h-[10%] bg-[url('https://img.freepik.com/free-vector/dark-black-background-design-with-stripes_1017-38064.jpg')]  bg-cover">
-            <h1 className="text-white font-extrabold">
-              THE SUPER_ID'S OF THE USERS
+        <div className="h-screen lg:hidden bg-blue-950 col-span-6">
+          <div className="h-[15%]  bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')]  bg-cover">
+            <h1 className="text-black font-extrabold">
+              THE SUPER_ID's OF THE USERS
             </h1>
             <div className="flex flex-row overflow-scroll">
               {SignId.map((e) => (
-                <div className=" w-[95%] font-extrabold hover:bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtdv5X5MEqVnjNLyFaXQOHnN8VE0V539Ydw&usqp=CAU')] hover:bg-cover hover:w-full hover:text-white hover:px-10 border-2 border-white py-2 text-white m-1 text-start px-5">
+                <div className=" w-[95%] font-extrabold hover:bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtdv5X5MEqVnjNLyFaXQOHnN8VE0V539Ydw&usqp=CAU')] hover:bg-cover hover:w-full hover:text-white hover:px-10 border-4 border-blue-950 rounded-lg  shadow-xl py-2 text-blue-950 m-1 text-start px-5">
                   <button type="button" onClick={() => handleUserId(e)} key={e}>
                     {e}
                   </button>
@@ -157,37 +157,40 @@ const ChatGround = () => {
               ))}
             </div>
           </div>
-          <hr className="borderr-2 border-black border-dotted" />
-          <div className="h-[90%] relative overflow-scroll bg-[url('https://www.ixpap.com/images/2021/11/Matt-Black-Wallpaper-2.jpg')]   bg-cover">
-            <div className="h-[8%] w-full py-2  bg-transparent px-4 text-sm   text-center font-bold text-white">
+
+          <div className="h-[82%] relative overflow-scroll bg-[url('https://i.pinimg.com/originals/4d/fc/98/4dfc98fe97aec74439cc1701fbf599dc.jpg')]   bg-cover">
+            <div className="h-[10%] w-full py-2  bg-gradient-to-t from-transparent via-blue-800 to-transparent px-4 text-sm   text-center font-extrabold text-white">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
-            <div className="mb-24 p-4">
+            <div className="  h-[85%] overflow-scroll p-4">
               {chat.length > 0 ? (
                 chat.map((e) => getfuntion(e))
               ) : (
                 <h1 className="text-white text-center mt-10">
-                  Opps....!You Haven't Started Chat before...!
+                  Dear {loginId} <br />
+                  You Haven't Started Chatted with {receiver} before...!
+                  <br />
+                  PLEASE START YOUR CHAT
                 </h1>
               )}
             </div>
-            <div className="absolute -bottom-10 w-[100%] border-2 border-black">
-              <form onSubmit={handleSubmitChat}>
-                <input
-                  type="text"
-                  id="chatBox"
-                  className="lg:w-[94%] w-[80%] py-2 bg-gray-100 px-4"
-                  placeholder="please enter your text"
-                  onChange={handleChat}
-                />
-                <button
-                  type="submit"
-                  className="text-black bg-gray-100 px-4 lg:w-[6%] w-[20%] py-2"
-                >
-                  Send
-                </button>
-              </form>
-            </div>
+          </div>
+          <div className=" w-[100%] h-[8%] border-2 border-black">
+            <form onSubmit={handleSubmitChat}>
+              <input
+                type="text"
+                id="chatBox"
+                className="lg:w-[94%] font-extrabold text-black border-none w-[80%] py-2 bg-gray-100 px-4"
+                placeholder="please enter your text"
+                onChange={handleChat}
+              />
+              <button
+                type="submit"
+                className="text-black bg-gray-100 px-2 font-extrabold lg:w-[6%] w-[20%] py-2"
+              >
+                Send
+              </button>
+            </form>
           </div>
         </div>
       </div>
