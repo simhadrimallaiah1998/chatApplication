@@ -88,13 +88,13 @@ const Login = () => {
           </form>
           <div className="mt-24 w-full">
             <h1 className="text-white font-extrabold ">Not Registered Yet?</h1>
-            <a href="/signin">
+            <Link href="/signin">
               <div className="grid grid-cols-1 rounded-full  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% h-full px-4">
                 <button className=" hover:text-black text-white text-2xl font-extrabold font-serif py-2   rounded-md">
                   Signin
                 </button>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
