@@ -110,7 +110,7 @@ const Signin = () => {
           <h1 className="lg:text-black text-white font-bold">
             Already had an Account..?then Please do Login
           </h1>
-          <Link to="/login">
+          <Link to="/">
             <div className="grid grid-cols-1 rounded-lg bg-gradient-to-r  from-fuchsia-500 to-violet-500 h-full px-4">
               <button className=" text-white font-bold py-2 rounded-md">
                 Login

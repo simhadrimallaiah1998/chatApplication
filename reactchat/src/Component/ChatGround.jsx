@@ -59,6 +59,7 @@ const ChatGround = () => {
   const handleSubmitChat = async (event) => {
     event.preventDefault();
     document.getElementById("chatBox").value = "";
+    document.getElementById("chatBox2").value = "";
 
     const [res, err] = await api.personToPerson({
       sender_id: loginId,
@@ -66,6 +67,7 @@ const ChatGround = () => {
       chat: mess,
     });
     setMess((document.getElementById("chatBox").value = ""));
+    setMess((document.getElementById("chatBox2").value = ""));
     if (err) throw err;
     console.log(res.data);
 
@@ -128,6 +130,7 @@ const ChatGround = () => {
             <form onSubmit={handleSubmitChat}>
               <input
                 type="text"
+                id="chatBox2"
                 className="lg:w-[94%] w-[80%] py-2 font-extrabold text-black bg-gray-100 px-4"
                 placeholder="please enter your text"
                 onChange={handleChat}
