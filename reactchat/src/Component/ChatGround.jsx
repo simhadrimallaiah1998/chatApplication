@@ -175,8 +175,8 @@ const ChatGround = () => {
           </div>
         </div>
 
-        <div className="h-screen lg:hidden bg-blue-950 col-span-6">
-          <div className="h-[18%]  bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')]  bg-cover">
+        <div className="h-[100%] lg:hidden bg-blue-950 col-span-6">
+          <div className="h-[15%]  bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')]  bg-cover">
             <h1 className="text-black font-extrabold">
               THE SUPER_ID's OF THE USERS
             </h1>
@@ -191,19 +191,19 @@ const ChatGround = () => {
               ))}
             </div>
             <button
-              className="border-4 border-blue-950 w-full  font-extrabold rounded-md"
+              className="border-4 mt-2 py-2 text-white bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtdv5X5MEqVnjNLyFaXQOHnN8VE0V539Ydw&usqp=CAU')]  border-blue-950 w-full  font-extrabold rounded-md"
               onClick={handleDelete}
             >
               Delete Chat with {receiver}
             </button>
           </div>
 
-          <div className="h-[75%] relative overflow-scroll bg-[url('https://i.pinimg.com/originals/4d/fc/98/4dfc98fe97aec74439cc1701fbf599dc.jpg')]   bg-cover">
+          <div className="h-[80%] relative overflow-scroll bg-[url('https://i.pinimg.com/originals/4d/fc/98/4dfc98fe97aec74439cc1701fbf599dc.jpg')]   bg-cover">
             <div className="h-[10%] w-full py-2  bg-gradient-to-t from-transparent via-blue-800 to-transparent px-4 text-sm   text-center font-extrabold text-white">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
 
-            <div className="  h-[85%] overflow-scroll p-4">
+            <div className="  h-[90%] overflow-scroll p-4">
               {chat.length > 0 ? (
                 chat.map((e) => getfuntion(e))
               ) : (
