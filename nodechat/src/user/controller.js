@@ -178,6 +178,22 @@ const getPersonToPersonChat = (req, res) => {
   }
 };
 
+const deleteChat = (req, res) => {
+  try {
+    const { sender_id, receiver_id } = req.body;
+    pool.query(
+      service.deleteChat,
+      [sender_id, receiver_id],
+      (error, result) => {
+        if (error) throw error;
+        res.status(200).json("The Chat has been deleted successfully");
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   addChat,
   getPersonToPersonChat,
@@ -191,4 +207,5 @@ module.exports = {
   usersData,
   allUsersChat,
   personToPersonChat,
+  deleteChat,
 };

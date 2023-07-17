@@ -24,8 +24,12 @@ const personToPersonChat =
 const getPersonToPersonChat =
   "select * from chatting where (sender_id=$1 and receiver_id=$2) or (sender_id=$2 and receiver_id=$1)";
 
+const deleteChat =
+  "delete from chatting where (sender_id=$1 and receiver_id=$2) or (sender_id=$2 and receiver_id=$1)";
+
 module.exports = {
   checkChatIdExists,
+  deleteChat,
   getPersonToPersonChat,
   usersData,
   getChats,

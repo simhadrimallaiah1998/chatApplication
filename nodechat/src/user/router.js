@@ -18,4 +18,5 @@ router.get("/all/chats", controller.allUsersChat);
 router.get("/data/signin", controller.usersData);
 router.post("/person/to/person/chat", controller.personToPersonChat);
 router.post("/get/chats/between", controller.getPersonToPersonChat);
+router.post("/delete/chat", controller.deleteChat);
 module.exports = router;
