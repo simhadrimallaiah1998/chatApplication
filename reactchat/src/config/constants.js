@@ -8,4 +8,5 @@ export const API_Routes = {
   getAllUser: `${Base_URL}/user/data/signin`,
   personToPerson: `${Base_URL}/user/person/to/person/chat`,
   getPersonalChat: `${Base_URL}/user/get/chats/between`,
+  deleteChat: `${Base_URL}/user/delete/chat`,
 };

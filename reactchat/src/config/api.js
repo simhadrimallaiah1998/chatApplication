@@ -58,3 +58,11 @@ export async function getPersonalChat({ sender_id, receiver_id }) {
   });
   return [data, null];
 }
+
+export async function deleteChat({ sender_id, receiver_id }) {
+  const data = await axios.post(API_Routes.deleteChat, {
+    sender_id,
+    receiver_id,
+  });
+  return [data, null];
+}

@@ -53,7 +53,7 @@ const Signin = () => {
       toast.success("Your Registration is Successfull");
       console.log("The User Data is", res.data);
 
-      navigate("/login");
+      navigate("/");
     } else {
       alert("The SuperID shouldn't more than 6 digits");
     }
