@@ -175,7 +175,7 @@ const ChatGround = () => {
           </div>
         </div>
 
-        <div className="h-[100%] lg:hidden bg-blue-950 col-span-6">
+        <div className="h- lg:hidden bg-blue-950 col-span-6">
           <div className="h-[15%]  bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')]  bg-cover">
             <h1 className="text-black font-extrabold">
               THE SUPER_ID's OF THE USERS
