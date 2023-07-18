@@ -200,7 +200,7 @@ const ChatGround = () => {
           </div>
 
           <div className="h-[75%] relative overflow-scroll bg-[url('https://w0.peakpx.com/wallpaper/629/15/HD-wallpaper-gentlemen-nani-nivetha.jpg')]   bg-cover">
-            <div className="h-[10%] w-full py-2   px-4 text-sm   text-center font-extrabold text-black">
+            <div className="h-[8%] w-full py-2   px-4 text-sm   text-center font-extrabold text-black">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
 
@@ -218,20 +218,41 @@ const ChatGround = () => {
               )}
             </div>
           </div>
-          <div className=" w-[100%] h-[5%] border-2 border-black">
-            <form onSubmit={handleSubmitChat}>
+          <div className=" w-[100%] h-[5%] border-2 flex items-center  border-black">
+            <form
+              className="w-full flex items-center"
+              onSubmit={handleSubmitChat}
+            >
               <input
                 type="text"
                 id="chatBox"
-                className="lg:w-[94%] font-extrabold text-black border-none w-[80%] py-2 bg-gray-100 px-4"
+                className="lg:w-[94%] font-extrabold text-black border-none w-[90%] py-2 bg-white px-4"
                 placeholder="Enter your text........"
                 onChange={handleChat}
               />
               <button
                 type="submit"
-                className="text-black bg-gray-100 px-2 font-extrabold lg:w-[6%] w-[20%] py-2"
+                className="text-black bg-white  px-0 font-extrabold lg:w-[6%] w-[10%] py-2"
               >
-                Send
+                <svg
+                  fill="#000000"
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  id="send"
+                  data-name="Flat Color"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon flat-color"
+                >
+                  <path
+                    id="primary"
+                    d="M21.66,12a2,2,0,0,1-1.14,1.81L5.87,20.75A2.08,2.08,0,0,1,5,21a2,2,0,0,1-1.82-2.82L5.46,13l.45-1-.45-1L3.18,5.87A2,2,0,0,1,5.87,3.25l14.65,6.94A2,2,0,0,1,21.66,12Z"
+                  ></path>
+                  <path
+                    id="secondary"
+                    d="M12,12a1,1,0,0,1-1,1H5.46l.45-1-.45-1H11A1,1,0,0,1,12,12Z"
+                  ></path>
+                </svg>
               </button>
             </form>
           </div>
