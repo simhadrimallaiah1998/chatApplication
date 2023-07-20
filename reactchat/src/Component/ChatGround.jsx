@@ -91,13 +91,13 @@ const ChatGround = () => {
   function getfuntion(e) {
     if (e.sender_id === loginId) {
       return (
-        <div className="text-right font-bold w-full  text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
+        <div className="text-right font-bold w-full   text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black lg:bg-transparent opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
           {e.chat}
         </div>
       );
     }
     return (
-      <h1 className="text-left font-bold w-full  text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
+      <h1 className="text-left font-bold w-full lg:bg-transparent text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
         {e.chat}
       </h1>
     );
@@ -122,11 +122,11 @@ const ChatGround = () => {
 
   return (
     <div className="h-screen w-full bg-blue-950 ">
-      <div className="h-[100%]  w-full grid grid-cols-6 bg-yellow-950 lg:bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-cover">
+      <div className="h-[100%]  w-full grid grid-cols-8 bg-yellow-950 lg:bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-cover">
         <div className="lg:col-span-1 lg:block lg:py-2 hidden overflow-scroll place-content-center">
           <h1 className="text-white font-extrabold">THE SUPER_ID'S</h1>
           {SignId.map((e) => (
-            <div className=" w-[95%] font-extrabold hover:bg-gradient-to-tr from-blue-950 via-white to-blue-950  hover:text-black hover:px-10 border-2 border-white py-2 text-white m-1 text-start px-5">
+            <div className=" w-[95%] hover:bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-[url('https://wallpaperaccess.com/full/692085.jpg')]  bg-cover font-extrabold hover:text-white  hover:px-10 border-2  border-white py-2 text-black font-extrabold text-center m-1 hover:text-start px-5">
               <button type="button" onClick={() => handleUserId(e)} key={e}>
                 {e}
               </button>
@@ -134,19 +134,21 @@ const ChatGround = () => {
           ))}
         </div>
 
-        <div className="lg:col-span-5 h-[100%] lg:block hidden  bg-green-950 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold">
-          <div className="h-[10%] w-full py-2 flex flex-row justify-around  bg-gradient-to-t from-blue-950 via-white to-blue-950   border-2 border-double border-white  text-center font-extrabold text-black">
+        <div className="lg:col-span-7 h-[100%] lg:block hidden  bg-green-950 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold">
+          <div className="h-[10%] w-full py-2 flex flex-row justify-around  bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover  border-2 border-double border-white  text-center font-extrabold text-black">
             <div className="mt-2 font-extrabold">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
-            <button
-              className="bg-gradient-to-tr from-blue-950 via-white to-blue-950 px-4 py-2 rounded-md"
-              onClick={handleDelete}
-            >
-              Delete Chats
-            </button>
+            {chat.length > 0 && (
+              <button
+                className="bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-cover px-4 py-2 rounded-md text-white font-extrabold"
+                onClick={handleDelete}
+              >
+                Delete Chats
+              </button>
+            )}
           </div>
-          <div className="h-[85%] overflow-scroll">
+          <div className="h-[85%] overflow-scroll px-2">
             {chat.length > 0 ? (
               chat.map((e) => getfuntion(e))
             ) : (
@@ -155,8 +157,8 @@ const ChatGround = () => {
               </h1>
             )}
           </div>
-          <div className="absolute bottom-0 w-[100%] border-2 border-black">
-            <form onSubmit={handleSubmitChat}>
+          <div className="absolute bottom-0 w-[100%] border-4 border-black">
+            <form className="flex items-center" onSubmit={handleSubmitChat}>
               <input
                 type="text"
                 id="chatBox2"
@@ -168,7 +170,25 @@ const ChatGround = () => {
                 type="submit"
                 className="text-black bg-gray-100 px-4 lg:w-[6%] w-[20%] py-2"
               >
-                Send
+                <svg
+                  fill="#000000"
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  id="send"
+                  data-name="Flat Color"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon flat-color"
+                >
+                  <path
+                    id="primary"
+                    d="M21.66,12a2,2,0,0,1-1.14,1.81L5.87,20.75A2.08,2.08,0,0,1,5,21a2,2,0,0,1-1.82-2.82L5.46,13l.45-1-.45-1L3.18,5.87A2,2,0,0,1,5.87,3.25l14.65,6.94A2,2,0,0,1,21.66,12Z"
+                  ></path>
+                  <path
+                    id="secondary"
+                    d="M12,12a1,1,0,0,1-1,1H5.46l.45-1-.45-1H11A1,1,0,0,1,12,12Z"
+                  ></path>
+                </svg>
               </button>
             </form>
           </div>
