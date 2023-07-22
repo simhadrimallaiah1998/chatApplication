@@ -122,33 +122,36 @@ const ChatGround = () => {
 
   return (
     <div className="h-screen w-full bg-blue-950 ">
-      <div className="h-[100%]  w-full grid grid-cols-8 bg-yellow-950 lg:bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-cover">
-        <div className="lg:col-span-1 lg:block lg:py-2 hidden overflow-scroll place-content-center">
+      <div className="h-[100%]  w-full lg:grid lg:grid-cols-7 bg-yellow-950 lg:bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-cover">
+        <div className="lg:col-span-1 lg:block  lg:py-2 hidden overflow-scroll place-content-center">
           <h1 className="text-white font-extrabold">THE SUPER_ID'S</h1>
           {SignId.map((e) => (
-            <div className=" w-[95%] hover:bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-[url('https://wallpaperaccess.com/full/692085.jpg')]  bg-cover font-extrabold hover:text-white  hover:px-10 border-2  border-white py-2 text-black font-extrabold text-center m-1 hover:text-start px-5">
-              <button type="button" onClick={() => handleUserId(e)} key={e}>
+            <div
+              onClick={() => handleUserId(e)}
+              className=" w-[95%] rounded-r-full  hover:bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-[url('https://wallpaperaccess.com/full/692085.jpg')]  font-extrabold hover:text-white  hover:px-2 border-2  border-white py-2 text-black font-extrabold text-center m-1 hover:text-start px-5"
+            >
+              <button type="button" key={e}>
                 {e}
               </button>
             </div>
           ))}
         </div>
 
-        <div className="lg:col-span-7 h-[100%] lg:block hidden  bg-green-950 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold">
-          <div className="h-[10%] w-full py-2 flex flex-row justify-around  bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover  border-2 border-double border-white  text-center font-extrabold text-black">
+        <div className="lg:col-span-6 h-[100%] lg:block hidden  bg-green-950 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold">
+          <div className="h-[10%] w-full py-2 flex flex-row justify-around rounded-t-full bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover  border-2 border-double border-white  text-center font-extrabold text-black">
             <div className="mt-2 font-extrabold">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
             {chat.length > 0 && (
               <button
-                className="bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-cover px-4 py-2 rounded-md text-white font-extrabold"
+                className="bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')]  bg-cover px-4 py-2 rounded-md text-white font-extrabold"
                 onClick={handleDelete}
               >
                 Delete Chats
               </button>
             )}
           </div>
-          <div className="h-[85%] overflow-scroll px-2">
+          <div className="h-[80%] py-2 overflow-scroll px-2">
             {chat.length > 0 ? (
               chat.map((e) => getfuntion(e))
             ) : (
@@ -157,18 +160,18 @@ const ChatGround = () => {
               </h1>
             )}
           </div>
-          <div className="absolute bottom-0 w-[100%] border-4 border-black">
+          <div className="absolute bottom-0 w-[100%] border-2 border-black">
             <form className="flex items-center" onSubmit={handleSubmitChat}>
               <input
                 type="text"
                 id="chatBox2"
-                className="lg:w-[94%] w-[80%] py-2 font-extrabold text-black bg-gray-100 px-4"
-                placeholder="please enter your text"
+                className="lg:w-[94%] w-[80%] py-2 font-extrabold text-black bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover px-4"
+                placeholder="Enter Your Text........."
                 onChange={handleChat}
               />
               <button
                 type="submit"
-                className="text-black bg-gray-100 px-4 lg:w-[6%] w-[20%] py-2"
+                className="text-black bg-[url('https://wallpaperaccess.com/full/692085.jpg')] px-4 lg:w-[6%] w-[20%] py-2"
               >
                 <svg
                   fill="#000000"
@@ -194,16 +197,19 @@ const ChatGround = () => {
           </div>
         </div>
 
-        <div className="h-screen lg:hidden bg-blue-950 col-span-6">
-          <div className="h-[20%]  bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')]  bg-cover">
+        <div className="h-screen w-full lg:hidden bg-blue-950 col-span-6">
+          <div className="h-[20%] w-full bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')]  bg-cover">
             <h1 className="text-black font-extrabold">
               THE SUPER_ID's OF THE USERS
             </h1>
 
             <div className="flex flex-row overflow-scroll">
               {SignId.map((e) => (
-                <div className=" w-[95%] font-extrabold hover:bg-[url('https://wallpaperaccess.com/full/692085.jpg')] hover:bg-cover hover:w-full hover:text-black hover:px-10 border-4 border-blue-950 rounded-lg  shadow-xl py-2 text-blue-950 m-1 text-start px-5">
-                  <button type="button" onClick={() => handleUserId(e)} key={e}>
+                <div
+                  onClick={() => handleUserId(e)}
+                  className=" w-[95%]  font-extrabold hover:bg-[url('https://wallpaperaccess.com/full/692085.jpg')] hover:bg-cover hover:w-full hover:text-black hover:px-10 border-4 border-blue-950 rounded-lg  shadow-xl py-2 text-blue-950 m-1 text-start px-5"
+                >
+                  <button type="button" key={e}>
                     {e}
                   </button>
                 </div>
@@ -211,7 +217,7 @@ const ChatGround = () => {
             </div>
             {chat.length > 0 && (
               <button
-                className="border-4  py-2 text-black bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover   border-blue-950 w-full  font-extrabold rounded-3xl"
+                className="border-4  py-2  text-black bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover   border-blue-950 w-full  font-extrabold rounded-3xl"
                 onClick={handleDelete}
               >
                 Delete Chat with {receiver}
@@ -219,7 +225,7 @@ const ChatGround = () => {
             )}
           </div>
 
-          <div className="h-[75%] relative overflow-scroll bg-[url('https://w0.peakpx.com/wallpaper/629/15/HD-wallpaper-gentlemen-nani-nivetha.jpg')]   bg-cover">
+          <div className="h-[75%] w-full relative overflow-scroll bg-[url('https://w0.peakpx.com/wallpaper/629/15/HD-wallpaper-gentlemen-nani-nivetha.jpg')]   bg-cover">
             <div className="h-[8%] w-full py-2   px-4 text-sm   text-center font-extrabold text-black">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
