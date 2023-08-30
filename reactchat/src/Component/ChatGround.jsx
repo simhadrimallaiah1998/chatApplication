@@ -1,40 +1,37 @@
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import * as api from "../config/api";
 import useStore from "../store";
 
 const ChatGround = () => {
   const registration = useStore((state) => state.registration);
   const loginId = registration[0][0].user_id;
+  const chat_id = uuidv4();
   const email_id = registration[0][0].email_id;
   console.log("The Login User id", loginId);
+
   const [userData, setUserData] = useState([]);
   const [receiver, setReceiver] = useState();
   const [mess, setMess] = useState("");
   const [chat, setChat] = useState([]);
+  const [getUser, setGetUser] = useState(false);
+  const [sub, setSub] = useState(false);
   const [del, setDel] = useState(false);
 
-  async function RegisteredUser() {
+  const registerData = async () => {
     const [res, err] = await api.GetAllUsers();
     if (err) throw err;
-
+    setGetUser(!getUser);
     setUserData(res.data);
-  }
+  };
+
+  useEffect(() => {
+    registerData();
+  }, []);
 
   const handleChat = (event) => {
     setMess(event.target.value);
   };
-
-  async function PreviousChat() {
-    console.log("This is called");
-    const [res, err] = await api.GetChats();
-    if (err) throw err;
-    console.log(res.data);
-  }
-
-  useEffect(() => {
-    RegisteredUser();
-    PreviousChat();
-  }, []);
 
   const userId = userData.map((e) => e.id);
   console.log(userId);
@@ -56,7 +53,7 @@ const ChatGround = () => {
       setChat(res.data);
     }
     getPersonalChat();
-  }, [loginId, receiver, del]);
+  }, [receiver, loginId, sub, del]);
 
   const handleSubmitChat = async (event) => {
     event.preventDefault();
@@ -65,26 +62,18 @@ const ChatGround = () => {
 
     if (mess.length > 0) {
       const [res, err] = await api.personToPerson({
+        chat_id: chat_id,
         sender_id: loginId,
         receiver_id: receiver,
         chat: mess,
+        created_at: new Date().toLocaleString(),
       });
       setMess((document.getElementById("chatBox").value = ""));
       setMess((document.getElementById("chatBox2").value = ""));
+      setSub(!sub);
       if (err) throw err;
       console.log(res.data);
     }
-
-    async function getPersonalChat() {
-      const [res, err] = await api.getPersonalChat({
-        sender_id: loginId,
-        receiver_id: receiver,
-      });
-      if (err) throw err;
-      console.log(res);
-      setChat(res.data);
-    }
-    getPersonalChat();
   };
   console.log("The Chats between them is", chat);
 
@@ -92,25 +81,52 @@ const ChatGround = () => {
     if (e.sender_id === loginId) {
       return (
         <div className="text-right font-bold w-full   text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black lg:bg-transparent opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
-          {e.chat}
+          <div className="flex flex-row justify-between">
+            <div>
+              <button
+                className="border-4  py-2  text-black bg-white  border-blue-950 px-2  font-extrabold rounded-3xl"
+                onClick={() => handleDelete(e.chat_id)}
+              >
+                <svg
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4V4zm2 2h6V4H9v2zM6.074 8l.857 12H17.07l.857-12H6.074zM10 10a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z"
+                    fill="#0D0D0D"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div>
+              <h1>{e.chat}</h1>
+              <span className="text-xs">{e.created_at}</span>
+            </div>
+          </div>
         </div>
       );
     }
     return (
       <h1 className="text-left font-bold w-full lg:bg-transparent text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
-        {e.chat}
+        <h1> {e.chat}</h1>
+        <span className="text-xs">{e.created_at}</span>
       </h1>
     );
   }
 
-  const handleDelete = async () => {
-    let confirmPassword = prompt("Please enter your email_id", "");
+  const handleDelete = async (id) => {
+    let confirmPassword = prompt(
+      "Please confirm your email_id to delete your text"
+    );
 
     if (confirmPassword === email_id) {
       console.log("This deleted button has been clicked");
       const [res, err] = await api.deleteChat({
+        chat_id: id,
         sender_id: loginId,
-        receiver_id: receiver,
       });
       if (err) throw err;
       console.log(res);
@@ -142,14 +158,6 @@ const ChatGround = () => {
             <div className="mt-2 font-extrabold">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
-            {chat.length > 0 && (
-              <button
-                className="bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')]  bg-cover px-4 py-2 rounded-md text-white font-extrabold"
-                onClick={handleDelete}
-              >
-                Delete Chats
-              </button>
-            )}
           </div>
           <div className="h-[80%] py-2 overflow-scroll px-2">
             {chat.length > 0 ? (
@@ -198,8 +206,8 @@ const ChatGround = () => {
         </div>
 
         <div className="h-screen w-full lg:hidden bg-blue-950 col-span-6">
-          <div className="h-[20%] w-full bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')]  bg-cover">
-            <h1 className="text-black font-extrabold">
+          <div className="h-[12%] w-full bg-[url('https://media.istockphoto.com/id/1367980878/vector/futuristic-geometric-deep-blue-gradation-background-illustration.jpg?s=612x612&w=0&k=20&c=3s7xQfMSUcBQq_ZNTruiz-qELXenAPGnGypj4Z-daAE=')]  bg-cover">
+            <h1 className="text-white py-2 font-extrabold">
               THE SUPER_ID's OF THE USERS
             </h1>
 
@@ -207,7 +215,7 @@ const ChatGround = () => {
               {SignId.map((e) => (
                 <div
                   onClick={() => handleUserId(e)}
-                  className=" w-[95%]  font-extrabold hover:bg-[url('https://wallpaperaccess.com/full/692085.jpg')] hover:bg-cover hover:w-full hover:text-black hover:px-10 border-4 border-blue-950 rounded-lg  shadow-xl py-2 text-blue-950 m-1 text-start px-5"
+                  className=" w-[95%]  font-extrabold hover:bg-[url('https://wallpaperaccess.com/full/692085.jpg')] hover:bg-cover hover:w-full hover:text-black hover:px-10 border-t-2 border-r-4  border-gray-300 rounded-lg  shadow-xl py-1 text-white m-1 text-start px-5"
                 >
                   <button type="button" key={e}>
                     {e}
@@ -215,18 +223,10 @@ const ChatGround = () => {
                 </div>
               ))}
             </div>
-            {chat.length > 0 && (
-              <button
-                className="border-4  py-2  text-black bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover   border-blue-950 w-full  font-extrabold rounded-3xl"
-                onClick={handleDelete}
-              >
-                Delete Chat with {receiver}
-              </button>
-            )}
           </div>
 
-          <div className="h-[75%] w-full relative overflow-scroll bg-[url('https://w0.peakpx.com/wallpaper/629/15/HD-wallpaper-gentlemen-nani-nivetha.jpg')]   bg-cover">
-            <div className="h-[8%] w-full py-2   px-4 text-sm   text-center font-extrabold text-black">
+          <div className="h-[82%] w-full relative overflow-scroll bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5HllPI5DStZNJMDCJGTJ8U4fRVaY2MfwnAzoXBU5UulGBfuBRGDk186iDL4n6j56Lh0E&usqp=CAU')] object-top  bg-cover">
+            <div className="h-[8%] w-full py-2   px-4 text-sm   text-center font-extrabold text-blue-950">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
 
@@ -244,7 +244,7 @@ const ChatGround = () => {
               )}
             </div>
           </div>
-          <div className=" w-[100%] h-[5%] border-2 flex items-center  border-black">
+          <div className=" w-[100%] h-[6%] border-2 flex items-center  border-black">
             <form
               className="w-full flex items-center"
               onSubmit={handleSubmitChat}

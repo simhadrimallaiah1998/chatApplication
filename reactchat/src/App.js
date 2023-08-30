@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./Component/Login";
 import NotFound from "./Component/NotFound";
-import Message from "./Component/Message";
+
 import ChatGround from "./Component/ChatGround";
 import { Test } from "./Component/Test";
 
@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/signin" element={<Signin />}></Route>
-          <Route path="/message" element={<Message />}></Route>
+
           <Route path="/chat/ground" element={<ChatGround />}></Route>
           <Route exact path="/home" element={<Home />}></Route>
           <Route exact path="/test/:id" element={<Test />}></Route>

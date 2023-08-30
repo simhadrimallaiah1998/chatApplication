@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS public.signin
     email_id text COLLATE pg_catalog."default" NOT NULL UNIQUE,
     user_name text COLLATE pg_catalog."default" NOT NULL,
     password text COLLATE pg_catalog."default" NOT NULL,
-    created_at date,
+    created_at timestamp not null default now(),
     CONSTRAINT signin_pkey PRIMARY KEY (id)
     
 )

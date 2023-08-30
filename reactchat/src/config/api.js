@@ -1,12 +1,19 @@
 import axios from "axios";
 import { API_Routes } from "./constants";
 
-export async function UserSignin({ id, email_id, user_name, password }) {
+export async function UserSignin({
+  id,
+  email_id,
+  user_name,
+  password,
+  created_at,
+}) {
   const data = await axios.post(API_Routes.userSignin, {
     id,
     email_id,
     user_name,
     password,
+    created_at,
   });
   return [data, null];
 }
@@ -20,16 +27,16 @@ export async function LoginUser({ user_id, email_id, password }) {
   return [data, null];
 }
 
-export async function AddChat({ chat_id, chat }) {
-  const data = await axios.post(API_Routes.userChat, { chat_id, chat });
-  return [data, null];
-}
+// export async function AddChat({ chat_id, chat }) {
+//   const data = await axios.post(API_Routes.userChat, { chat_id, chat });
+//   return [data, null];
+// }
 
-export async function GetChats() {
-  const data = await axios.get(API_Routes.getChat);
+// export async function GetChats() {
+//   const data = await axios.get(API_Routes.getChat);
 
-  return [data, null];
-}
+//   return [data, null];
+// }
 
 export async function GetAllUsers() {
   const data = await axios.get(API_Routes.getAllUser);
@@ -42,11 +49,19 @@ export async function personal({ chat_id }) {
   return [data, null];
 }
 
-export async function personToPerson({ sender_id, receiver_id, chat }) {
+export async function personToPerson({
+  chat_id,
+  sender_id,
+  receiver_id,
+  chat,
+  created_at,
+}) {
   const data = await axios.post(API_Routes.personToPerson, {
+    chat_id,
     sender_id,
     receiver_id,
     chat,
+    created_at,
   });
   return [data, null];
 }
@@ -59,10 +74,10 @@ export async function getPersonalChat({ sender_id, receiver_id }) {
   return [data, null];
 }
 
-export async function deleteChat({ sender_id, receiver_id }) {
+export async function deleteChat({ chat_id, sender_id }) {
   const data = await axios.post(API_Routes.deleteChat, {
+    chat_id,
     sender_id,
-    receiver_id,
   });
   return [data, null];
 }

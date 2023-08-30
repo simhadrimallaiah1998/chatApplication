@@ -47,7 +47,7 @@ const Signin = () => {
         email_id: email,
         user_name: user,
         password: pass,
-        created_at: new Date(),
+        created_at: new Date().toLocaleString(),
       });
       if (err) throw err;
       toast.success("Your Registration is Successfull");
