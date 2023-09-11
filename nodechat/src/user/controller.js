@@ -2,66 +2,7 @@ const { query } = require("express");
 const pool = require("../../database");
 const service = require("./service");
 
-// const getAllUsers = asyncasync => {
-//   try {
-//     await pool.query(service.getAllUsers, (error, results) => {
-//       if (error) throw error;
-//       res.status(200).json(results.rows);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// const getUserByID = asyncasync => {
-//   const userId = parseInt(req.params.id);
-//   await pool.query(service.getUserByID, [userId], (error, results) => {
-//     if (error) throw error;
-//     res.status(200).json(results.rows);
-//   });
-// };
-
-// const addUser = asyncasync => {
-//   const { name, id } = req.body;
-//   pool.query(service.checkIdExists, [id], (error, results) => {
-//     if (results.rows.length) {
-//       res.send("Id has Already Existed");
-//     }
-
-//     pool.query(service.addUser, [name, id], (error, results) => {
-//       if (error) throw error;
-//       res.status(201).send("user has Been Created");
-//     });
-//   });
-// };
-
-// const deleteUser = asyncasync => {
-//   const { id } = req.body;
-
-//   pool.query(service.checkIdExists, [id], (error, results) => {
-//     if (!results.rows.length) {
-//       res.status(404).send("The user not found");
-//     }
-
-//     pool.query(service.deleteUser, [id], (error, results) => {
-//       if (error) throw error;
-//       res.status(202).send("The User has been Deleted");
-//     });
-//   });
-// };
-
-// const updateUser =async => {
-//   const { name, id } = req.body;
-//   pool.query(service.checkIdExists, [id], (error, results) => {
-//     if (!results.rows.length) {
-//       res.send("No User Found With this Id");
-//     }
-//     pool.query(service.updateUser, [name, id], (error, results) => {
-//       res.status(201).send("The User Has Been Updated");
-//     });
-//   });
-// };
-
+//user register
 const userRegister = async (req, res) => {
   try {
     const { id, email_id, user_name, password, created_at } = req.body;
@@ -84,6 +25,7 @@ const userRegister = async (req, res) => {
   }
 };
 
+//user login
 const userLogin = async (req, res) => {
   try {
     const { user_id, email_id, password } = req.body;
@@ -109,36 +51,7 @@ const userLogin = async (req, res) => {
   }
 };
 
-// const addChat =async => {
-//   try {
-//     const { chat_id, chat } = req.body;
-//     pool.query(service.checkChatIdExists, [chat_id], (error, results) => {
-//       console.log(results);
-
-//       if (!results.rowCount) {
-//         res.send("The User Not Registred");
-//       }
-//       pool.query(service.addChat, [chat_id, chat], (error, results) => {
-//         if (error) throw error;
-//         res.status(201).send(results.rows);
-//       });
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// const allUsersChat = async (req, res) => {
-//   try {
-//     await pool.query(service.getChats, (error, results) => {
-//       if (error) throw error;
-//       res.status(200).json(results.rows);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
+//usersData
 const usersData = async (req, res) => {
   try {
     await pool.query(service.usersData, (error, results) => {
@@ -150,6 +63,7 @@ const usersData = async (req, res) => {
   }
 };
 
+//users chat
 const personToPersonChat = async (req, res) => {
   try {
     const { chat_id, sender_id, receiver_id, chat, created_at } = req.body;
@@ -165,6 +79,8 @@ const personToPersonChat = async (req, res) => {
     console.log(err);
   }
 };
+
+//get users chat
 const getPersonToPersonChat = async (req, res) => {
   try {
     const { sender_id, receiver_id } = req.body;
@@ -182,6 +98,7 @@ const getPersonToPersonChat = async (req, res) => {
   }
 };
 
+//delete user chat
 const deleteChat = async (req, res) => {
   try {
     const { chat_id, sender_id } = req.body;
@@ -199,17 +116,10 @@ const deleteChat = async (req, res) => {
 };
 
 module.exports = {
-  //addChat,
-  getPersonToPersonChat,
   userLogin,
-  // getAllUsers,
-  // getUserByID,
-  // addUser,
-  // deleteUser,
-  // updateUser,
   userRegister,
   usersData,
-
   personToPersonChat,
+  getPersonToPersonChat,
   deleteChat,
 };

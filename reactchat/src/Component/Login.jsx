@@ -44,14 +44,14 @@ const Login = () => {
 
   return (
     <div>
-      <div className="bg-[url('https://wallpaperaccess.com/full/7781042.jpg')]  lg:bg-[url('https://img.freepik.com/premium-vector/gradient-connection-background_23-2150519259.jpg')] bg-cover w-full h-screen grid grid-cols-1 px-4 py-2 place-content-center place-items-center">
-        <div className="lg:w-2/3 w-full px-10 rounded-md  shadow-lg h-full py-10  bg-transparent lg:border-2 lg:border-white grid grid-cols-1 place-content-center place-items-center">
+      <div className="bg-[url('https://thumbs.dreamstime.com/b/abstract-blue-background-white-striped-pattern-blocks-diagonal-lines-vintage-blue-texture-squares-distressed-faded-46703605.jpg')]  lg:bg-[url('https://img.freepik.com/premium-vector/gradient-connection-background_23-2150519259.jpg')] bg-cover w-full h-screen grid grid-cols-1  py-2 place-content-center place-items-center">
+        <div className="lg:w-2/3 w-full px-4 rounded-md  shadow-lg h-full py-10  bg-transparent lg:border-2 lg:border-white grid grid-cols-1 place-content-center place-items-center">
           <form onSubmit={handleLogin} className="w-full  px-2">
             <div className="flex flex-col justify-start items-start w-full">
               <input
                 onChange={handleId}
                 type="text"
-                className="  py-2  bg-transparent font-bold  border-gray-200 border-b-2 w-full px-3 text-white"
+                className="py-2  bg-transparent font-extrabold  border-gray-100 border-b-2 w-full px-3 text-white placeholder-white"
                 placeholder="Enter Registered Super ID"
               />
             </div>
@@ -60,7 +60,7 @@ const Login = () => {
               <input
                 type="text"
                 onChange={handleEmail}
-                className="  py-2  bg-transparent font-bold  border-gray-200 border-b-2 w-full px-3 text-white"
+                className="py-2  bg-transparent font-extrabold  border-gray-100 border-b-2 w-full px-3 text-white placeholder-white"
                 placeholder="Enter Registered Email_ID"
               />
             </div>
@@ -70,7 +70,7 @@ const Login = () => {
               <input
                 type="text"
                 onChange={handlePass}
-                className="  py-2  bg-transparent font-bold  border-gray-200 border-b-2 w-full  text-white px-3"
+                className="py-2  bg-transparent font-extrabold  border-gray-100 border-b-2 w-full px-3 text-white placeholder-white"
                 placeholder="Enter Registered Password"
               />
             </div>
@@ -79,7 +79,7 @@ const Login = () => {
             <div className="grid grid-cols-1 rounded-full   bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full px-4">
               <button
                 type="submit"
-                className=" hover:text-black text-white text-2xl font-extrabold font-serif py-2  "
+                className=" hover:text-black  text-white text-2xl font-extrabold font-serif py-2  "
               >
                 Login
               </button>

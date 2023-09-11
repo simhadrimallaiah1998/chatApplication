@@ -27,17 +27,6 @@ export async function LoginUser({ user_id, email_id, password }) {
   return [data, null];
 }
 
-// export async function AddChat({ chat_id, chat }) {
-//   const data = await axios.post(API_Routes.userChat, { chat_id, chat });
-//   return [data, null];
-// }
-
-// export async function GetChats() {
-//   const data = await axios.get(API_Routes.getChat);
-
-//   return [data, null];
-// }
-
 export async function GetAllUsers() {
   const data = await axios.get(API_Routes.getAllUser);
   return [data, null];

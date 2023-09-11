@@ -15,18 +15,22 @@ const ChatGround = () => {
   const [mess, setMess] = useState("");
   const [chat, setChat] = useState([]);
   const [getUser, setGetUser] = useState(false);
+  const [show, setShow] = useState(false);
   const [sub, setSub] = useState(false);
   const [del, setDel] = useState(false);
 
-  const registerData = async () => {
-    const [res, err] = await api.GetAllUsers();
-    if (err) throw err;
-    setGetUser(!getUser);
-    setUserData(res.data);
-  };
-
   useEffect(() => {
-    registerData();
+    async function registeredData() {
+      try {
+        const [res, err] = await api.GetAllUsers();
+        if (err) throw err;
+        setGetUser(!getUser);
+        setUserData(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    registeredData();
   }, []);
 
   const handleChat = (event) => {
@@ -40,6 +44,7 @@ const ChatGround = () => {
   async function handleUserId(e) {
     console.log("The Receiver Id is", e);
     setReceiver(e);
+    setShow(!show);
   }
 
   useEffect(() => {
@@ -78,6 +83,22 @@ const ChatGround = () => {
   console.log("The Chats between them is", chat);
 
   function getfuntion(e) {
+    const utcTimestamp = e.created_at;
+    const dateInUTC = new Date(utcTimestamp);
+    dateInUTC.setTime(dateInUTC.getTime() + 0 * 60 * 60 * 1000);
+    const ISTDateString = dateInUTC.toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+
+    console.log(ISTDateString);
+
     if (e.sender_id === loginId) {
       return (
         <div className="text-right font-bold w-full   text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black lg:bg-transparent opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
@@ -103,7 +124,7 @@ const ChatGround = () => {
             </div>
             <div>
               <h1>{e.chat}</h1>
-              <span className="text-xs">{e.created_at}</span>
+              <span className="text-xs">{ISTDateString}</span>
             </div>
           </div>
         </div>
@@ -112,7 +133,7 @@ const ChatGround = () => {
     return (
       <h1 className="text-left font-bold w-full lg:bg-transparent text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
         <h1> {e.chat}</h1>
-        <span className="text-xs">{e.created_at}</span>
+        <span className="text-xs">{ISTDateString}</span>
       </h1>
     );
   }
@@ -206,26 +227,35 @@ const ChatGround = () => {
         </div>
 
         <div className="h-screen w-full lg:hidden bg-blue-950 col-span-6">
-          <div className="h-[12%] w-full bg-[url('https://media.istockphoto.com/id/1367980878/vector/futuristic-geometric-deep-blue-gradation-background-illustration.jpg?s=612x612&w=0&k=20&c=3s7xQfMSUcBQq_ZNTruiz-qELXenAPGnGypj4Z-daAE=')]  bg-cover">
+          <div className="h-[12%] w-full bg-[url('https://thumbs.dreamstime.com/b/abstract-blue-background-white-striped-pattern-blocks-diagonal-lines-vintage-blue-teture-squares-distressed-faded-46703605.jpg')]  bg-cover">
             <h1 className="text-white py-2 font-extrabold">
               THE SUPER_ID's OF THE USERS
             </h1>
 
             <div className="flex flex-row overflow-scroll">
-              {SignId.map((e) => (
-                <div
-                  onClick={() => handleUserId(e)}
-                  className=" w-[95%]  font-extrabold hover:bg-[url('https://wallpaperaccess.com/full/692085.jpg')] hover:bg-cover hover:w-full hover:text-black hover:px-10 border-t-2 border-r-4  border-gray-300 rounded-lg  shadow-xl py-1 text-white m-1 text-start px-5"
+              {show ? (
+                SignId.map((e) => (
+                  <div
+                    onClick={() => handleUserId(e)}
+                    className=" w-[95%]  font-extrabold  hover:w-full hover:text-black hover:px-10 border-t-2 border-r-4  border-gray-300 rounded-lg  shadow-xl py-1 text-white m-1 text-start px-5"
+                  >
+                    <button type="button" key={e}>
+                      {e}
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <button
+                  onClick={() => setShow(!show)}
+                  className=" w-full font-extrabold bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover hover:w-full hover:text-black hover:px-10 border-t-2 border-r-4  border-gray-300 rounded-lg  shadow-xl py-1 text-black m-1 text-center px-5"
                 >
-                  <button type="button" key={e}>
-                    {e}
-                  </button>
-                </div>
-              ))}
+                  Click Me To Show Users
+                </button>
+              )}
             </div>
           </div>
 
-          <div className="h-[82%] w-full relative overflow-scroll bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5HllPI5DStZNJMDCJGTJ8U4fRVaY2MfwnAzoXBU5UulGBfuBRGDk186iDL4n6j56Lh0E&usqp=CAU')] object-top  bg-cover">
+          <div className="h-[82%] w-full relative overflow-scroll bg-[url('https://w0.peakpx.com/wallpaper/629/15/HD-wallpaper-gentlemen-nani-nivetha.jpg')] object-top  bg-cover">
             <div className="h-[8%] w-full py-2   px-4 text-sm   text-center font-extrabold text-blue-950">
               Hey {loginId} You are right now chatting with {receiver}
             </div>
