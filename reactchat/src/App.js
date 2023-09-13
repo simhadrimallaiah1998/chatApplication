@@ -6,26 +6,30 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./Component/Login";
 import NotFound from "./Component/NotFound";
+import { Provider } from "react-redux";
+import { store } from "./reduxStore/store";
 
 import ChatGround from "./Component/ChatGround";
 import { Test } from "./Component/Test";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/signin" element={<Signin />}></Route>
+    <Provider store={store}>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/signin" element={<Signin />}></Route>
 
-          <Route path="/chat/ground" element={<ChatGround />}></Route>
-          <Route exact path="/home" element={<Home />}></Route>
-          <Route exact path="/test/:id" element={<Test />}></Route>
-          <Route exact path="/" element={<Login />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-        <ToastContainer />
-      </BrowserRouter>
-    </div>
+            <Route path="/chat/ground" element={<ChatGround />}></Route>
+            <Route exact path="/home" element={<Home />}></Route>
+            <Route exact path="/test/:id" element={<Test />}></Route>
+            <Route exact path="/" element={<Login />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
+          <ToastContainer />
+        </BrowserRouter>
+      </div>
+    </Provider>
   );
 }
 

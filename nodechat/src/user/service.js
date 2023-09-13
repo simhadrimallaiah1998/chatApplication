@@ -1,5 +1,5 @@
-const checkuserIdExists = "select * from signin where email_id =$1";
-const checkChatIdExists = "select * from login where user_id=$1";
+const checkuserIdExists =
+  "select id=$3 from signin where email_id =$1 and password=$2";
 const userRegister =
   "insert into signin (id,email_id,user_name,password,created_at) values($1,$2,$3,$4,$5)  returning *";
 
@@ -16,7 +16,6 @@ const getPersonToPersonChat =
 const deleteChat = "delete from chatting where chat_id=$1 and sender_id=$2";
 
 module.exports = {
-  checkChatIdExists,
   deleteChat,
   getPersonToPersonChat,
   usersData,

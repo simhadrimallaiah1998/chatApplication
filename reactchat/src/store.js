@@ -1,3 +1,5 @@
+//zustand-store this is an optional code ,This code replaced with redux store for the application
+
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 

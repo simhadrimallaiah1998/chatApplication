@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import * as api from "../config/api";
-import useStore from "../store";
+//import useStore from "../store";
+import { useSelector } from "react-redux";
 
 const ChatGround = () => {
-  const registration = useStore((state) => state.registration);
-  const loginId = registration[0][0].user_id;
+  //from-redux-store
+  const usersData = useSelector((state) => state.login);
+
+  console.log(
+    "the data from redux store in the chatGround is",
+    usersData.usersData[0]
+  );
+  //console.log("the userid from redux store is", usersData[0].user_id);
+
+  //from-zustand-store
+  // const registration = useStore((state) => state.registration);
+
+  const loginId = usersData.usersData[0].user_id;
   const chat_id = uuidv4();
-  const email_id = registration[0][0].email_id;
+  const email_id = usersData.usersData[0].email_id;
   console.log("The Login User id", loginId);
 
   const [userData, setUserData] = useState([]);

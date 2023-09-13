@@ -7,7 +7,7 @@ const userRegister = async (req, res) => {
   try {
     const { id, email_id, user_name, password, created_at } = req.body;
     await pool.query(service.checkuserIdExists, [id], (error, results) => {
-      if (results.rows.length) {
+      if (results) {
         res.status(400).send("The User's is Already Existed");
       }
       pool.query(
@@ -31,23 +31,29 @@ const userLogin = async (req, res) => {
     const { user_id, email_id, password } = req.body;
     await pool.query(
       service.checkuserIdExists,
-      [email_id],
+      [email_id, password, user_id],
       (error, results) => {
-        // if (!results.rowCount) {
-        //   res.send("The User Has Not Registred yet..!");
-        // }
+        if (error) {
+          res.status(500).send("error while checking the details of the user");
+        }
+        if (results.rows.length === 0) {
+          res.status(400).send("User Not Found");
+        }
         pool.query(
           service.userLogin,
           [user_id, email_id, password],
           (error, results) => {
-            if (error) throw error;
+            if (error) {
+              console.log(error);
+              res.status(500).send("error while login");
+            }
             res.status(200).send(results.rows);
           }
         );
       }
     );
   } catch (err) {
-    console.log(err);
+    console.log("Error while handling userLogin Api");
   }
 };
 

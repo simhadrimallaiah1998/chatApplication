@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as api from "../config/api";
 import { toast } from "react-toastify";
-import useStore from "../store";
+//import useStore from "../store";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userDataType } from "../reduxStore/action";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [id, setId] = useState();
   const [email, setEmail] = useState("");
-
   const [pass, setPass] = useState("");
 
   const handleId = (event) => {
     setId(event.target.value);
   };
+
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -23,7 +26,7 @@ const Login = () => {
     setPass(event.target.value);
   };
 
-  const setRegistration = useStore((state) => state.setRegistration);
+  //const setRegistration = useStore((state) => state.setRegistration);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -32,10 +35,21 @@ const Login = () => {
       email_id: email,
       password: pass,
     });
-    if (err) throw err;
+    if (err) {
+      dispatch({
+        type: userDataType.LOADED,
+        usersData: [],
+        isError: true,
+      });
+    }
     if (res) {
       toast.success("Wow...!Now You can start chat with others");
-      setRegistration(res.data);
+      //setRegistration(res.data);
+      dispatch({
+        type: userDataType.LOADED,
+        usersData: res.data,
+        isError: false,
+      });
       navigate("/chat/ground");
     } else {
       navigate("/");
