@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as api from "../config/api";
+import * as api from "../config/api.ts";
 import { toast } from "react-toastify";
 //import useStore from "../store";
 import { Link } from "react-router-dom";
