@@ -6,7 +6,10 @@ const port = 4000;
 app.use(express.json());
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://chat-o0gd.onrender.com");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://chichinnatti8432.netlify.app"
+  );
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header(
     "Access-Control-Allow-Headers",
