@@ -9,7 +9,8 @@ import NotFound from "./Component/NotFound";
 import { Provider } from "react-redux";
 import { store } from "./reduxStore/store";
 
-import ChatGround from "./Component/ChatGround";
+//import ChatGround from "./Component/ChatGround";
+import Chat2 from "./Component/chat2";
 import { Test } from "./Component/Test";
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <Routes>
             <Route exact path="/signin" element={<Signin />}></Route>
 
-            <Route path="/chat/ground" element={<ChatGround />}></Route>
+            <Route path="/chat/ground" element={<Chat2 />}></Route>
             <Route exact path="/home" element={<Home />}></Route>
             <Route exact path="/test/:id" element={<Test />}></Route>
             <Route exact path="/" element={<Login />}></Route>

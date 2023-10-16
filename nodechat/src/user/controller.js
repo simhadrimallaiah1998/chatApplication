@@ -44,7 +44,7 @@ const userLogin = async (req, res) => {
           [user_id, email_id, password],
           (error, results) => {
             if (error) {
-              console.log(error);
+              // console.log(error);
               res.status(500).send("error while login");
             }
             res.status(200).send(results.rows);
@@ -53,7 +53,7 @@ const userLogin = async (req, res) => {
       }
     );
   } catch (err) {
-    console.log("Error while handling userLogin Api");
+    // console.log("Error while handling userLogin Api");
   }
 };
 
@@ -65,7 +65,7 @@ const usersData = async (req, res) => {
       res.status(200).json(results.rows);
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
   }
 };
 
@@ -82,7 +82,7 @@ const personToPersonChat = async (req, res) => {
       }
     );
   } catch (err) {
-    console.log(err);
+    //console.log(err);
   }
 };
 
@@ -100,7 +100,7 @@ const getPersonToPersonChat = async (req, res) => {
       }
     );
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 
@@ -117,7 +117,7 @@ const deleteChat = async (req, res) => {
       }
     );
   } catch (err) {
-    console.log(err);
+    //console.log(err);
   }
 };
 
