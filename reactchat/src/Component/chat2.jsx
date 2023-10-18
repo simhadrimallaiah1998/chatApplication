@@ -31,6 +31,7 @@ const ChatGround = () => {
   const [show, setShow] = useState(false);
   const [sub, setSub] = useState(false);
   const [del, setDel] = useState(false);
+  const [fileName, setFileName] = useState("");
 
   useEffect(() => {
     async function registeredData() {
@@ -59,6 +60,13 @@ const ChatGround = () => {
     setReceiver(e);
     setShow(!show);
   }
+  const handleFileName = (event) => {
+    const filedImage = event.target.files[0];
+    // setFileName(filedImage.name);
+
+    const imageUrl = URL.createObjectURL(filedImage);
+    setFileName(imageUrl);
+  };
 
   useEffect(() => {
     async function getPersonalChat() {
@@ -192,10 +200,18 @@ const ChatGround = () => {
           ))}
         </div>
 
-        <div className="lg:col-span-6 h-[100%] lg:block hidden  bg-green-950 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold">
+        <div
+          style={{ backgroundImage: `url(${fileName})` }}
+          className="lg:col-span-6 h-[100%] lg:block hidden  bg-gray-900 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold"
+        >
           <div className="h-[10%] w-full py-2 flex flex-row justify-around rounded-t-full bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover  border-2 border-double border-white  text-center font-extrabold text-black">
             <div className="mt-2 font-extrabold">
               Hey {loginId} You are right now chatting with {receiver}
+              <br />
+              <marquee direction="left" loop="">
+                For Better Experience Selected Image With Black Background The
+                New Features will be added Soon..!
+              </marquee>
             </div>
           </div>
           <div className="h-[80%] py-2 overflow-scroll px-2">
@@ -208,6 +224,9 @@ const ChatGround = () => {
             )}
           </div>
           <div className="absolute bottom-0 w-[100%] border-2 border-black">
+            <button className="text-white">
+              <input type="file" onChange={handleFileName} />
+            </button>
             <form className="flex items-center" onSubmit={handleSubmitChat}>
               <input
                 type="text"
