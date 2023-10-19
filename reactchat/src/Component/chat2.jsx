@@ -33,10 +33,9 @@ const ChatGround = () => {
   const [del, setDel] = useState(false);
   const [fileName, setFileName] = useState("");
   const [setting, setSetting] = useState(false);
-  const [color, setColor] = useState("text-black");
+  const [color, setColor] = useState("black");
 
-  localStorage.setItem("back", fileName);
-  console.log(localStorage.getItem("back"));
+  console.log("the filename is", fileName);
 
   useEffect(() => {
     async function registeredData() {
@@ -68,7 +67,6 @@ const ChatGround = () => {
   const handleFileName = (event) => {
     const filedImage = event.target.files[0];
     // setFileName(filedImage.name);
-
     const imageUrl = URL.createObjectURL(filedImage);
     setFileName(imageUrl);
   };
@@ -80,7 +78,7 @@ const ChatGround = () => {
         receiver_id: receiver,
       });
       if (err) throw err;
-      // console.log(res);
+
       setChat(res.data);
     }
     getPersonalChat();
@@ -106,7 +104,6 @@ const ChatGround = () => {
       console.log(res.data);
     }
   };
-  // console.log("The Chats between them is", chat);
 
   function getfuntion(e) {
     const utcTimestamp = e.created_at;
@@ -122,8 +119,6 @@ const ChatGround = () => {
       second: "2-digit",
       hour12: false,
     });
-
-    //console.log(ISTDateString);
 
     if (e.sender_id === loginId) {
       return (
@@ -199,7 +194,9 @@ const ChatGround = () => {
     <div className="h-screen w-full bg-blue-950 ">
       <div className="h-[100%]  w-full lg:grid lg:grid-cols-7 bg-yellow-950 lg:bg-[url('https://wallpapers.com/images/hd/vertical-night-sky-3c38e2irmokctrj1.jpg')] bg-cover">
         <div className="lg:col-span-1 lg:block  lg:py-2 hidden overflow-scroll place-content-center">
-          <h1 className="text-white font-extrabold">THE SUPER_ID'S</h1>
+          <h1 className="text-white animate-bounce font-extrabold">
+            THE SUPER_ID'S
+          </h1>
           {SignId.map((e) => (
             <div
               onClick={() => handleUserId(e)}
@@ -217,7 +214,7 @@ const ChatGround = () => {
           style={{ backgroundImage: `url(${fileName})` }}
           className="lg:col-span-6 h-[100%] lg:block hidden  bg-gray-900 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold"
         >
-          <div className="h-[10%] w-full py-2 flex flex-row justify-around rounded-t-full bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover  border-2 border-double border-white  text-center font-extrabold text-black">
+          <div className="h-[10%] w-full py-2 flex flex-row justify-around items-center rounded-t-full bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover  border-2 border-double border-white  text-center font-extrabold text-black">
             <div className="mt-2 font-extrabold">
               Hey {loginId} You are right now chatting with {receiver}
               <br />
@@ -230,8 +227,8 @@ const ChatGround = () => {
               onClick={() => setSetting(!setting)}
             >
               <svg
-                width="32px"
-                height="32px"
+                width="54px"
+                height="54px"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -249,10 +246,10 @@ const ChatGround = () => {
           </div>
           <div className="h-[80%] py-2 overflow-scroll px-2">
             {setting && (
-              <div className="flex h-screen flex-col justify-start items-center">
-                <div className="h-[45%] w-[50%] m-2 flex flex-col justify-center rounded-xl text-black text-center font-extrabold bg-white">
+              <div className="flex w-[100%] absolute -right-60 top-20 flex-col justify-start items-center">
+                <div className="h-[40%] w-[50%] border-4 border-white border-solid bg-[url('https://wallpaperaccess.com/full/692085.jpg')] m-2 flex flex-col rounded-xl text-black text-center font-extrabold bg-white">
                   Welcome To The Setting Section
-                  <div className="bg-black mb-2 mt-2 px-6 py-4">
+                  <div className="bg-black hover:bg-gray-500 hover:m-4 rounded-lg  mb-2 mt-2 px-6 py-4">
                     <button className="text-white">
                       <label className="text-white font-extrabold">
                         You Can Customize Your View Image
@@ -260,7 +257,7 @@ const ChatGround = () => {
                       </label>
                     </button>
                   </div>
-                  <div className="bg-black   rounded-lg w-full  px-6 py-4 flex justify-between  text-white items-center">
+                  <div className="bg-black   hover:bg-gray-500 hover:m-4 rounded-lg  px-6 py-4 flex justify-between  text-white items-center">
                     <label className="w-full">
                       {" "}
                       You Can Customize Your View color
