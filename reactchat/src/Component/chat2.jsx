@@ -32,6 +32,11 @@ const ChatGround = () => {
   const [sub, setSub] = useState(false);
   const [del, setDel] = useState(false);
   const [fileName, setFileName] = useState("");
+  const [setting, setSetting] = useState(false);
+  const [color, setColor] = useState("text-black");
+
+  localStorage.setItem("back", fileName);
+  console.log(localStorage.getItem("back"));
 
   useEffect(() => {
     async function registeredData() {
@@ -122,7 +127,10 @@ const ChatGround = () => {
 
     if (e.sender_id === loginId) {
       return (
-        <div className="text-right font-bold w-full   text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black lg:bg-transparent opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
+        <div
+          style={{ color: `${color}` }}
+          className="text-right font-bold w-full   text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black lg:bg-transparent opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 "
+        >
           <div className="flex flex-row justify-between">
             <div>
               <button
@@ -154,7 +162,10 @@ const ChatGround = () => {
     }
     return (
       <div>
-        <h1 className="text-left font-bold w-full lg:bg-transparent text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 ">
+        <h1
+          style={{ color: `${color}` }}
+          className="text-left font-bold w-full lg:bg-transparent text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 "
+        >
           <h1> {e.chat}</h1>
           <span className="text-xs">{ISTDateString}</span>
         </h1>
@@ -181,6 +192,8 @@ const ChatGround = () => {
       //  console.log("you rejected to delete the text");
     }
   };
+
+  console.log("The Color has been Set To ", color);
 
   return (
     <div className="h-screen w-full bg-blue-950 ">
@@ -209,12 +222,63 @@ const ChatGround = () => {
               Hey {loginId} You are right now chatting with {receiver}
               <br />
               <marquee direction="left" loop="">
-                For Better Experience Selected Image With Black Background The
-                New Features will be added Soon..!
+                The New Features will be added Soon..!
               </marquee>
+            </div>
+            <div
+              className="text-black font-extrabold"
+              onClick={() => setSetting(!setting)}
+            >
+              <svg
+                width="32px"
+                height="32px"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 4a1 1 0 0 0-1 1c0 1.692-2.046 2.54-3.243 1.343a1 1 0 1 0-1.414 1.414C7.54 8.954 6.693 11 5 11a1 1 0 1 0 0 2c1.692 0 2.54 2.046 1.343 3.243a1 1 0 0 0 1.414 1.414C8.954 16.46 11 17.307 11 19a1 1 0 1 0 2 0c0-1.692 2.046-2.54 3.243-1.343a1 1 0 1 0 1.414-1.414C16.46 15.046 17.307 13 19 13a1 1 0 1 0 0-2c-1.692 0-2.54-2.046-1.343-3.243a1 1 0 0 0-1.414-1.414C15.046 7.54 13 6.693 13 5a1 1 0 0 0-1-1zm-2.992.777a3 3 0 0 1 5.984 0 3 3 0 0 1 4.23 4.231 3 3 0 0 1 .001 5.984 3 3 0 0 1-4.231 4.23 3 3 0 0 1-5.984 0 3 3 0 0 1-4.231-4.23 3 3 0 0 1 0-5.984 3 3 0 0 1 4.231-4.231z"
+                  fill="#0D0D0D"
+                />
+                <path
+                  d="M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-2.828-.828a4 4 0 1 1 5.656 5.656 4 4 0 0 1-5.656-5.656z"
+                  fill="#0D0D0D"
+                />
+              </svg>
             </div>
           </div>
           <div className="h-[80%] py-2 overflow-scroll px-2">
+            {setting && (
+              <div className="flex h-screen flex-col justify-start items-center">
+                <div className="h-[45%] w-[50%] m-2 flex flex-col justify-center rounded-xl text-black text-center font-extrabold bg-white">
+                  Welcome To The Setting Section
+                  <div className="bg-black mb-2 mt-2 px-6 py-4">
+                    <button className="text-white">
+                      <label className="text-white font-extrabold">
+                        You Can Customize Your View Image
+                        <input type="file" onChange={handleFileName} />
+                      </label>
+                    </button>
+                  </div>
+                  <div className="bg-black   rounded-lg w-full  px-6 py-4 flex justify-between  text-white items-center">
+                    <label className="w-full">
+                      {" "}
+                      You Can Customize Your View color
+                      <select
+                        onClick={(event) => setColor(event.target.value)}
+                        className="w-full text-black hover:bg-black hover:text-white"
+                      >
+                        <option value="red">Red</option>
+                        <option value="green">Green</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {chat.length > 0 ? (
               chat.map((e) => getfuntion(e))
             ) : (
@@ -223,10 +287,8 @@ const ChatGround = () => {
               </h1>
             )}
           </div>
+
           <div className="absolute bottom-0 w-[100%] border-2 border-black">
-            <button className="text-white">
-              <input type="file" onChange={handleFileName} />
-            </button>
             <form className="flex items-center" onSubmit={handleSubmitChat}>
               <input
                 type="text"
