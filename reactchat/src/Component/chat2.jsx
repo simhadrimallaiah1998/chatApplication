@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import * as api from "../config/api.ts";
 //import useStore from "../store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { userDataType } from "../reduxStore/action.js";
 
 const ChatGround = () => {
   //from-redux-store
   const usersData = useSelector((state) => state.login);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // console.log(
   //   "the data from redux store in the chatGround is",
@@ -33,7 +37,8 @@ const ChatGround = () => {
   const [del, setDel] = useState(false);
   const [fileName, setFileName] = useState("");
   const [setting, setSetting] = useState(false);
-  const [color, setColor] = useState("black");
+  const [color, setColor] = useState("");
+  const [hovered, setHovered] = useState(false);
 
   console.log("the filename is", fileName);
 
@@ -105,6 +110,8 @@ const ChatGround = () => {
     }
   };
 
+  const styled = { color: !hovered ? `${color}` : "black" };
+
   function getfuntion(e) {
     const utcTimestamp = e.created_at;
     const dateInUTC = new Date(utcTimestamp);
@@ -123,7 +130,9 @@ const ChatGround = () => {
     if (e.sender_id === loginId) {
       return (
         <div
-          style={{ color: `${color}` }}
+          style={styled}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
           className="text-right font-bold w-full   text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black lg:bg-transparent opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 "
         >
           <div className="flex flex-row justify-between">
@@ -158,7 +167,9 @@ const ChatGround = () => {
     return (
       <div>
         <h1
-          style={{ color: `${color}` }}
+          style={styled}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
           className="text-left font-bold w-full lg:bg-transparent text-white hover:p-4 hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:opacity-100 hover:text-black hover:font-extrabold  hover:bg-cover   bg-black opacity-80 hover:border-white hover:border px-2 py-2 rounded-lg  m-1 "
         >
           <h1> {e.chat}</h1>
@@ -167,6 +178,18 @@ const ChatGround = () => {
       </div>
     );
   }
+
+  const handleLogout = () => {
+    navigate("/");
+    try {
+      dispatch({
+        type: userDataType.ERASE,
+        usersData: [],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleDelete = async (id) => {
     let confirmPassword = prompt(
@@ -212,18 +235,18 @@ const ChatGround = () => {
 
         <div
           style={{ backgroundImage: `url(${fileName})` }}
-          className="lg:col-span-6 h-[100%] lg:block hidden  bg-gray-900 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold"
+          className="lg:col-span-6 h-[100%] lg:block hidden object-fit bg-gray-900 col-span-6 relative w-full lg:bg-[url('https://static.vecteezy.com/system/resources/previews/001/987/871/original/abstract-black-stripes-diagonal-background-free-vector.jpg')] bg-cover place-content-start text-start lg:h-[100%] overflow-scroll text-black font-bold"
         >
-          <div className="h-[10%] w-full py-2 flex flex-row justify-around items-center rounded-t-full bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover  border-2 border-double border-white  text-center font-extrabold text-black">
+          <div className="h-[10%] w-full py-2   flex flex-row justify-between px-10 items-center rounded-t-full bg-[url('https://wallpaperaccess.com/full/692085.jpg')] bg-cover  border-2 border-double border-white  text-center font-extrabold text-black">
             <div className="mt-2 font-extrabold">
               Hey {loginId} You are right now chatting with {receiver}
               <br />
               <marquee direction="left" loop="">
-                The New Features will be added Soon..!
+                The New Features Will Be Added Soon...!
               </marquee>
             </div>
             <div
-              className="text-black font-extrabold"
+              className="text-black  font-extrabold"
               onClick={() => setSetting(!setting)}
             >
               <svg
@@ -244,23 +267,22 @@ const ChatGround = () => {
               </svg>
             </div>
           </div>
-          <div className="h-[80%] py-2 overflow-scroll px-2">
+          <div className="h-[80%]   py-2 overflow-y-scroll overflow-hidden px-2">
             {setting && (
-              <div className="flex w-[100%] absolute -right-60 top-20 flex-col justify-start items-center">
-                <div className="h-[40%] w-[50%] border-4 border-white border-solid bg-[url('https://wallpaperaccess.com/full/692085.jpg')] m-2 flex flex-col rounded-xl text-black text-center font-extrabold bg-white">
+              <div className="flex w-full z-10   absolute -right-60 top-20 flex-col justify-start items-center">
+                <div className="h-[40%] w-[50%] text-sm border-4 border-white border-solid bg-[url('https://wallpaperaccess.com/full/692085.jpg')] m-2 flex flex-col rounded-xl text-black text-center font-extrabold bg-white">
                   Welcome To The Setting Section
-                  <div className="bg-black hover:bg-gray-500 hover:m-4 rounded-lg  mb-2 mt-2 px-6 py-4">
-                    <button className="text-white">
-                      <label className="text-white font-extrabold">
-                        You Can Customize Your View Image
+                  <div className="border-2 border-solid border-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:text-black text-white  hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] hover:m-4  rounded-lg  mb-2 mt-2 px-6 py-4">
+                    <div>
+                      <label className=" font-extrabold">
+                        You Can Customize Your Wallpaper
                         <input type="file" onChange={handleFileName} />
                       </label>
-                    </button>
+                    </div>
                   </div>
-                  <div className="bg-black   hover:bg-gray-500 hover:m-4 rounded-lg  px-6 py-4 flex justify-between  text-white items-center">
+                  <div className=" border-2 border-solid border-white hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:text-black  mb-2   hover:m-4 rounded-lg  px-6 py-4 flex justify-between  text-white items-center">
                     <label className="w-full">
-                      {" "}
-                      You Can Customize Your View color
+                      You Can Customize Your Text Color
                       <select
                         onClick={(event) => setColor(event.target.value)}
                         className="w-full text-black hover:bg-black hover:text-white"
@@ -268,9 +290,19 @@ const ChatGround = () => {
                         <option value="red">Red</option>
                         <option value="green">Green</option>
                         <option value="black">Black</option>
-                        <option value="white">White</option>
+                        <option value="white" selected>
+                          White
+                        </option>
                       </select>
                     </label>
+                  </div>
+                  <div className=" bg-transparent  hover:m-4 rounded-lg  px-6 py-4 text-center  text-white items-center">
+                    <button
+                      onClick={handleLogout}
+                      className="hover:bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-shading-background-abstract-colorful-background-colorful-art-picture-image_938007.jpg')] border-2 border-solid border-white rounded-lg  bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:text-black text-white px-10 py-2"
+                    >
+                      LogOut
+                    </button>
                   </div>
                 </div>
               </div>
@@ -279,8 +311,8 @@ const ChatGround = () => {
             {chat.length > 0 ? (
               chat.map((e) => getfuntion(e))
             ) : (
-              <h1 className="text-white text-center mt-10">
-                DEAR {loginId} PLEASE START YOUR CHAT {receiver}
+              <h1 className="text-white animate-bounce text-center mt-10">
+                DEAR {loginId} PLEASE START YOUR CHAT {receiver} <br />
               </h1>
             )}
           </div>

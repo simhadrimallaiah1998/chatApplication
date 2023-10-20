@@ -26,6 +26,11 @@ export const reducer = (state = initialData, action) => {
         usersData: action.usersData,
         isLoading: false,
       };
+    case userDataType.ERASE:
+      return {
+        ...state,
+        usersData: [],
+      };
     default:
       return state;
   }

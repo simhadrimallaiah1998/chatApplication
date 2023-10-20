@@ -1,6 +1,7 @@
 export const userDataType = {
   LOAD: "REQUESTED_API",
   LOADED: "DATA_RECEIVING",
+  ERASE: "DATA_ERASE",
 };
 
 export const userRegistartion = {
